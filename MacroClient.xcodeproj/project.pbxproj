@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E3371FA129F8438800A5F810 /* MacroClientTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacroClientTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3371FA129F8438800A5F810 /* MacroClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacroClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3371FA429F8438800A5F810 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E3371FA629F8438800A5F810 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		E3371FA829F8438900A5F810 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		E3371F9829F8438800A5F810 = {
 			isa = PBXGroup;
 			children = (
-				E3371FA329F8438800A5F810 /* MacroClientTest */,
+				E3371FA329F8438800A5F810 /* MacroClient */,
 				E3371FA229F8438800A5F810 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,12 +63,12 @@
 		E3371FA229F8438800A5F810 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E3371FA129F8438800A5F810 /* MacroClientTest.app */,
+				E3371FA129F8438800A5F810 /* MacroClient.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E3371FA329F8438800A5F810 /* MacroClientTest */ = {
+		E3371FA329F8438800A5F810 /* MacroClient */ = {
 			isa = PBXGroup;
 			children = (
 				E3371FA429F8438800A5F810 /* App.swift */,
@@ -81,7 +81,7 @@
 				E3371FB729F84EF500A5F810 /* LaunchScreen.storyboard */,
 				E3371FAA29F8438900A5F810 /* Preview Content */,
 			);
-			path = MacroClientTest;
+			path = MacroClient;
 			sourceTree = "<group>";
 		};
 		E3371FAA29F8438900A5F810 /* Preview Content */ = {
@@ -132,9 +132,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E3371FA029F8438800A5F810 /* MacroClientTest */ = {
+		E3371FA029F8438800A5F810 /* MacroClient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E3371FAF29F8438900A5F810 /* Build configuration list for PBXNativeTarget "MacroClientTest" */;
+			buildConfigurationList = E3371FAF29F8438900A5F810 /* Build configuration list for PBXNativeTarget "MacroClient" */;
 			buildPhases = (
 				E3371F9D29F8438800A5F810 /* Sources */,
 				E3371F9E29F8438800A5F810 /* Frameworks */,
@@ -144,9 +144,9 @@
 			);
 			dependencies = (
 			);
-			name = MacroClientTest;
+			name = MacroClient;
 			productName = iOSwebtest;
-			productReference = E3371FA129F8438800A5F810 /* MacroClientTest.app */;
+			productReference = E3371FA129F8438800A5F810 /* MacroClient.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -164,7 +164,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E3371F9C29F8438800A5F810 /* Build configuration list for PBXProject "MacroClientTest" */;
+			buildConfigurationList = E3371F9C29F8438800A5F810 /* Build configuration list for PBXProject "MacroClient" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -177,7 +177,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E3371FA029F8438800A5F810 /* MacroClientTest */,
+				E3371FA029F8438800A5F810 /* MacroClient */,
 			);
 		};
 /* End PBXProject section */
@@ -338,7 +338,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"iOSwebtest/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MacroClient/Preview Content\"";
 				DEVELOPMENT_TEAM = T8HX5554JX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -370,7 +370,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"iOSwebtest/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MacroClient/Preview Content\"";
 				DEVELOPMENT_TEAM = T8HX5554JX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -398,7 +398,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E3371F9C29F8438800A5F810 /* Build configuration list for PBXProject "MacroClientTest" */ = {
+		E3371F9C29F8438800A5F810 /* Build configuration list for PBXProject "MacroClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E3371FAD29F8438900A5F810 /* Debug */,
@@ -407,7 +407,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E3371FAF29F8438900A5F810 /* Build configuration list for PBXNativeTarget "MacroClientTest" */ = {
+		E3371FAF29F8438900A5F810 /* Build configuration list for PBXNativeTarget "MacroClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E3371FB029F8438900A5F810 /* Debug */,
