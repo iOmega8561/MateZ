@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct iOSwebtestApp: App {
+struct MacroClient: App {
     @StateObject var tempData: TempData = TempData()
     
     var body: some Scene {
