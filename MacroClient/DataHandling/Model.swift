@@ -47,11 +47,11 @@ struct UserRequest: Codable, Hashable {
     var uuid: String
     var user_id: String
     var game: String
-    var time: String
+    var time: Int
     var desc: String
     var mic: Bool
     var region: String
-    var pnumber: String
+    var pnumber: Int
     var skills: [String]
     var plat: String
     var mode: String

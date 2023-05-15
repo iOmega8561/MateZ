@@ -22,11 +22,11 @@ class TempData: ObservableObject {
                     uuid: "not_unique",
                     user_id: "someuser@mail.com",
                     game: newRequest.game,
-                    time: "\(newRequest.time)",
+                    time: newRequest.time,
                     desc: newRequest.desc,
                     mic: newRequest.mic,
                     region: newRequest.region,
-                    pnumber: "\(newRequest.pnumber)",
+                    pnumber: newRequest.pnumber,
                     skills: newRequest.skills,
                     plat: newRequest.plat,
                     mode: newRequest.mode
