@@ -76,7 +76,7 @@ struct GameConfig: View {
             .navigationTitle(newRequest.game)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: TestView(tempData: tempData)
+                    NavigationLink(destination: MainView(tempData: tempData)
                         .task {
                             await tempData.insertUserRequest(newRequest: newRequest)
                         }

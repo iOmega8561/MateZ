@@ -89,6 +89,6 @@ struct RequestBox: View {
 struct RequestBox_Previews: PreviewProvider {
     static var previews: some View {
         //RequestBox()
-        TestView(tempData: TempData())
+        MainView(tempData: TempData())
     }
 }
