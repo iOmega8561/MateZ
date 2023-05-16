@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E3371FA529F8438800A5F810 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3371FA429F8438800A5F810 /* App.swift */; };
-		E3371FA729F8438800A5F810 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3371FA629F8438800A5F810 /* TestView.swift */; };
+		E3371FA729F8438800A5F810 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3371FA629F8438800A5F810 /* MainView.swift */; };
 		E3371FA929F8438900A5F810 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3371FA829F8438900A5F810 /* Assets.xcassets */; };
 		E3371FAC29F8438900A5F810 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3371FAB29F8438900A5F810 /* Preview Assets.xcassets */; };
 		E3371FB429F844B400A5F810 /* WebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3371FB329F844B400A5F810 /* WebAPI.swift */; };
@@ -26,7 +26,7 @@
 /* Begin PBXFileReference section */
 		E3371FA129F8438800A5F810 /* MacroClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacroClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3371FA429F8438800A5F810 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		E3371FA629F8438800A5F810 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		E3371FA629F8438800A5F810 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E3371FA829F8438900A5F810 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3371FAB29F8438900A5F810 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E3371FB329F844B400A5F810 /* WebAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAPI.swift; sourceTree = "<group>"; };
@@ -72,7 +72,6 @@
 			isa = PBXGroup;
 			children = (
 				E3371FA429F8438800A5F810 /* App.swift */,
-				E3371FA629F8438800A5F810 /* TestView.swift */,
 				E3BFC15B29FD3D6D0025609E /* UtilityUIs */,
 				E3BFC15829FD2DD80025609E /* RemoteRequests */,
 				E3B151F92A0BE93A00907396 /* NewRequest */,
@@ -114,6 +113,7 @@
 		E3BFC15829FD2DD80025609E /* RemoteRequests */ = {
 			isa = PBXGroup;
 			children = (
+				E3371FA629F8438800A5F810 /* MainView.swift */,
 				E3BFC15929FD30A50025609E /* Dashboard.swift */,
 				E3BFC15E29FD82AD0025609E /* RequestBox.swift */,
 			);
@@ -200,7 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3371FA729F8438800A5F810 /* TestView.swift in Sources */,
+				E3371FA729F8438800A5F810 /* MainView.swift in Sources */,
 				E3B151FB2A0BE98700907396 /* GameSelection.swift in Sources */,
 				E3BFC15D29FD496C0025609E /* TempData.swift in Sources */,
 				E3371FB429F844B400A5F810 /* WebAPI.swift in Sources */,

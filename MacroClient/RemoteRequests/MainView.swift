@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TestView: View {
+struct MainView: View {
     @StateObject var tempData: TempData
     @State var refreshDone: Bool = false
     
@@ -25,7 +25,9 @@ struct TestView: View {
                     Dashboard(deviceProxy: proxy, tempData: tempData)
                         .navigationBarTitleDisplayMode(.large)
                         .navigationTitle("Requests")
-                        .refreshable { _ = await tempData.fetchUserRequests() }
+                        .refreshable {
+                            refreshDone = await tempData.fetchUserRequests()
+                        }
                 }
             }
         }
@@ -38,8 +40,8 @@ struct TestView: View {
     }
 }
 
-struct TestView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        TestView(tempData: TempData())
+        MainView(tempData: TempData())
     }
 }
