@@ -60,6 +60,15 @@ class AppData: ObservableObject {
         }
     }
     
+    func lastsession() async -> String {
+        do {
+            return try await webAPI.lastsession(username: authData.username, token: authData.token)
+        } catch {
+            print("Error authenticating user \(String(describing: error))")
+            return "Error"
+        }
+    }
+    
     func signin(username: String, password: String) async -> String {
         do {
             let response = try await webAPI.signin(username: username, password: password)

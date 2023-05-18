@@ -25,6 +25,18 @@ class WebAPI {
         return response.answer
     }
     
+    func lastsession(username: String, token: String) async throws -> String {
+        let api = APIRequest<SimpleResponse>(
+            urlString: "\(apiURLBase)/lastsession",
+            queryItems: [
+                URLQueryItem(name: "username", value: username),
+                URLQueryItem(name: "token", value: token)
+            ])
+        
+        let response = try await request(api)
+        return response.answer
+    }
+    
     func signin(username: String, password: String) async throws -> String {
         let api = APIRequest<SimpleResponse>(
             urlString: "\(apiURLBase)/signin",

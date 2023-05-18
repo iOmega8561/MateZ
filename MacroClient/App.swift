@@ -13,7 +13,7 @@ struct MacroClient: App {
     
     var body: some Scene {
         WindowGroup {
-            Login(appData: appData)
+            LastSession(appData: appData)
         }
     }
 }
