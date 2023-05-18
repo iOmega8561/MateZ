@@ -155,6 +155,10 @@ struct Login: View {
         } else {
             usernameError = false; passError = false; asyncError = false
             isUnlocked.toggle()
+            
+            do {
+                try await appData.save()
+            } catch { print("Error saving authData") }
         }
         
         isLoading = false

@@ -17,7 +17,7 @@ struct GameSelection: View {
         List(searchResults, id: \.self) { game in
             NavigationLink(destination: GameConfig(appData: appData, newRequest: UserRequest(
                 uuid: "localrequest",
-                user_id: appData.username,
+                user_id: appData.authData.username,
                 game: game,
                 time: 10,
                 mic: false,

@@ -13,16 +13,48 @@ let mainRegions = ["ABW", "AFG", "AGO", "AIA", "ALA", "ALB", "AND", "ARE", "ARG"
 class AppData: ObservableObject {
     private let webAPI: WebAPI = WebAPI()
     
-    @Published var authToken: String = "not_authenticated"
-    @Published var username: String = "not_authenticated"
+    @Published var authData: LocalAuthData = LocalAuthData(token: "na", username: "na")
     
     @Published var games: [String: Game] = [:]
     @Published var requests: [String: UserRequest] = [:]
     
+    private static func fileURL() throws -> URL {
+        try FileManager.default.url(for: .documentDirectory,
+                                    in: .userDomainMask,
+                                    appropriateFor: nil,
+                                    create: false)
+        .appendingPathComponent("macroclient.data")
+    }
+    
+    func load() async throws {
+        let task = Task<LocalAuthData, Error> {
+            let fileURL = try Self.fileURL()
+
+            guard let data = try? Data(contentsOf: fileURL) else {
+                return LocalAuthData(token: "na", username: "na")
+            }
+            let authData = try JSONDecoder().decode(LocalAuthData.self, from: data)
+            return authData
+        }
+        
+        let taskValue = try await task.value
+        self.authData = taskValue
+    }
+
+
+    func save() async throws {
+        let task = Task {
+            let data = try JSONEncoder().encode(self.authData)
+            let outfile = try Self.fileURL()
+            try data.write(to: outfile)
+        }
+        _ = try await task.value
+    }
+    
     func logout() async {
         do {
-            let _ = try await webAPI.logout(username: username)
-            authToken = "not_authenticated"; username = "not_authenticated"
+            let _ = try await webAPI.logout(username: authData.username)
+            authData.token = "na"; authData.username = "na"
         } catch {
             print("Error loggin user out \(String(describing: error))")
         }
@@ -33,7 +65,7 @@ class AppData: ObservableObject {
             let response = try await webAPI.signin(username: username, password: password)
             
             if !response.contains("Invalid") {
-                authToken = response; self.username = username
+                authData.token = response; authData.username = username
             }
             
             return response
@@ -54,7 +86,7 @@ class AppData: ObservableObject {
     
     func insertUserRequest(newRequest: UserRequest) async {
         do {
-            let _: String = try await webAPI.insert(authToken: authToken, newRequest: newRequest)
+            let _: String = try await webAPI.insert(authToken: authData.token, newRequest: newRequest)
         } catch {
             print("Error inserting user request \(String(describing: error))")
         }
@@ -62,7 +94,7 @@ class AppData: ObservableObject {
     
     func deleteUserRequest(uuid: String) async {
         do {
-            let answer: String = try await webAPI.delete(authToken: authToken, uuid: uuid)
+            let answer: String = try await webAPI.delete(authToken: authData.token, uuid: uuid)
             
             if answer == "Success" {
                 let _ = await fetchUserRequests()

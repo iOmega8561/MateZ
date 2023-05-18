@@ -14,9 +14,6 @@ struct MacroClient: App {
     var body: some Scene {
         WindowGroup {
             Login(appData: appData)
-                /*.task {
-                    await tempData.fetchRemoteGames()
-                }*/
         }
     }
 }

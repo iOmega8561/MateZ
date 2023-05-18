@@ -28,7 +28,7 @@ struct Dashboard: View {
                                     }
                                 }){
                                     Text("Delete request")
-                                }.disabled(req.user_id != appData.username)
+                                }.disabled(req.user_id != appData.authData.username)
                             }
                     }.foregroundColor(.black)
                 }

@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct LocalAuthData: Codable {
+    var token: String
+    var username: String
+}
+
 struct Game: Codable, Hashable {
     var name: String
     var imgname: String
