@@ -12,16 +12,39 @@ struct Profile: View {
     @Binding var loggedIn: Bool
     
     var body: some View {
-        VStack {
-            Button {
-                Task {
-                    await appData.logout()
-                    loggedIn = false
+        NavigationView {
+            ZStack {
+                Color(red: 0.949, green: 0.949, blue: 0.971)
+                    .ignoresSafeArea()
+                
+                VStack {
+                    RemoteImage(imgname: "user_generic", squareSize: 130)
+                        .clipShape(Circle())
+                    
+                    Text(appData.authData.username)
+                        .font(.title)
+                    
+                    Form {
+                        Section(header: Text("Authentication")) {
+                            Button {
+                                Task {
+                                    await appData.logout()
+                                    loggedIn = false
+                                }
+                            } label: {
+                                HStack {
+                                    Spacer()
+                                    Text("Log out")
+                                        .foregroundColor(.red)
+                                    Spacer()
+                                }
+                            }
+                        }
+                    }
                 }
-            } label: {
-                Text("Log out")
-                    .foregroundColor(.red)
             }
+            .navigationTitle("User profile")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

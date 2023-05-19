@@ -10,6 +10,7 @@ import SwiftUI
 struct RemoteImage: View {
     let baseUrl: String = "https://test.example.domain.com"
     let imgname: String
+    var squareSize: CGFloat?
     
     var body: some View {
         AsyncImage(url: URL(string: "\(baseUrl)/img?name=\(imgname)")) { phase in
@@ -25,7 +26,7 @@ struct RemoteImage: View {
                 image
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 60)
+                    .frame(width: squareSize ?? 60)
                 
             case .failure(_):
                 Spacer()

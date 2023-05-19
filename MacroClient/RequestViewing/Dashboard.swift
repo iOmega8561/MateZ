@@ -51,16 +51,6 @@ struct Dashboard: View {
                     .navigationViewStyle(StackNavigationViewStyle())
                     .navigationTitle("Requests")
                     .toolbar {
-                        /*ToolbarItem(placement: .navigationBarLeading) {
-                         NavigationLink(destination: Login(appData: appData)
-                         .navigationBarBackButtonHidden(true), isActive: $logoutActive) {
-                         Text("Log out")
-                         .foregroundColor(.red)
-                         }.onChange(of: logoutActive) { (_) in
-                         Task {await appData.logout()}
-                         }
-                         }*/
-                        
                         ToolbarItem(placement: .navigationBarTrailing) {
                             NavigationLink(destination: GameSelection(appData: appData)) {
                                 HStack {
