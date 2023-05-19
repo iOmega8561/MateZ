@@ -139,11 +139,11 @@ struct Signup: View {
         if response == "Error" {
             asyncError = true
         } else if response == "Invalid or missing username" {
-            usernameError = true
+            usernameError = true; invalidChar = false; usernameTaken = false
         } else if response == "Invalid username chars" {
-            invalidChar = true
+            invalidChar = true; usernameError = false; usernameTaken = false
         } else if response == "User exists already" {
-            usernameTaken = true
+            usernameTaken = true; usernameError = false; invalidChar = false;
         } else if response == "Invalid or missing password" {
             passError = true
         } else {
