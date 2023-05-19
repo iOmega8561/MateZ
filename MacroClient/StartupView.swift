@@ -7,20 +7,31 @@
 
 import SwiftUI
 
-struct LastSession: View {
+struct StartupView: View {
     @StateObject var appData: AppData
     @State var isLoading: Bool = true
-    @State var status: Int = 0
+    @State var loggedIn: Bool = false
     
     var body: some View {
         Group {
             
             if isLoading {
                 CustomProgress(withText: true)
-            } else if status == 0 {
-                Login(appData: appData)
+            } else if !loggedIn {
+                Login(appData: appData, loggedIn: $loggedIn)
             } else {
-                MainView(appData: appData)
+                TabView {
+                    
+                    Dashboard(appData: appData)
+                        .tabItem {
+                            Label("Dashboard", systemImage: "newspaper")
+                        }
+                    
+                    Profile(appData: appData, loggedIn: $loggedIn)
+                        .tabItem{
+                            Label("Profile", systemImage: "person")
+                        }
+                }
             }
             
         }.task {
@@ -31,7 +42,7 @@ struct LastSession: View {
                     let response = await appData.lastsession()
                     
                     if response == "Success" {
-                        status = 1
+                        loggedIn = true
                     }
                 }
                 
@@ -43,8 +54,8 @@ struct LastSession: View {
     }
 }
 
-struct LastSession_Previews: PreviewProvider {
+struct StartupView_Previews: PreviewProvider {
     static var previews: some View {
-        LastSession(appData: AppData())
+        StartupView(appData: AppData())
     }
 }

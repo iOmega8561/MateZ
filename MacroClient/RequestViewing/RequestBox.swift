@@ -87,6 +87,6 @@ struct RequestBox: View {
 
 struct RequestBox_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(appData: AppData())
+        Dashboard(appData: AppData())
     }
 }

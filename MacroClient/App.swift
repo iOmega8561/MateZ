@@ -13,7 +13,7 @@ struct MacroClient: App {
     
     var body: some Scene {
         WindowGroup {
-            LastSession(appData: appData)
+            StartupView(appData: appData)
         }
     }
 }

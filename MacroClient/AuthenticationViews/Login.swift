@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Login: View {
     @StateObject var appData: AppData
+    @Binding var loggedIn: Bool
     
     @State var username: String = ""
     @State var password: String = ""
@@ -113,16 +114,7 @@ struct Login: View {
                                 }.foregroundColor(.black)
                                 
                             }
-                        } else {
-                            NavigationLink(destination: MainView(appData: appData).navigationBarBackButtonHidden(true)) {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.white)
-                                    .frame(width: 350, height: 50)
-                                    .overlay(
-                                        Text("Proceed to dashboard"))
-                            }.foregroundColor(.black)
                         }
-                        
                     } else {
                         CustomProgress(withText: false)
                     }
@@ -154,11 +146,12 @@ struct Login: View {
             passError = true
         } else {
             usernameError = false; passError = false; asyncError = false
-            isUnlocked.toggle()
             
             do {
                 try await appData.save()
             } catch { print("Error saving authData") }
+            
+            loggedIn = true
         }
         
         isLoading = false
@@ -167,6 +160,6 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login(appData: AppData())
+        Login(appData: AppData(), loggedIn: .constant(false))
     }
 }

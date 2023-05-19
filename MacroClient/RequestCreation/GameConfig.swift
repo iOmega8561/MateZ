@@ -69,17 +69,11 @@ struct GameConfig: View {
         .navigationTitle(newRequest.game)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                /*NavigationLink(destination: MainView(appData: appData)
-                    .task {
-                        await appData.insertUserRequest(newRequest: newRequest)
-                    }
-                    .navigationBarBackButtonHidden(true)
-                ) {
-                    Text("Save and Exit")
-                }*/
-                
                 Button {
-                    Task {await appData.insertUserRequest(newRequest: newRequest)}
+                    Task {
+                        await appData.insertUserRequest(newRequest: newRequest)
+                        _ = await appData.fetchUserRequests()
+                    }
                     self.presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Save and Exit")
