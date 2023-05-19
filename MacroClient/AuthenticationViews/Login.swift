@@ -13,7 +13,6 @@ struct Login: View {
     
     @State var username: String = ""
     @State var password: String = ""
-    @State var isUnlocked: Bool = false
     @State var usernameError: Bool = false
     @State var passError: Bool = false
     @State var isLoading: Bool = false
@@ -89,31 +88,28 @@ struct Login: View {
                     Spacer()
                     
                     if !isLoading {
-                        if !isUnlocked {
-                            HStack {
-                                NavigationLink(destination: Signup(appData: appData)) {
-                                    
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.white)
-                                        .frame(width: 200, height: 50)
-                                        .overlay(
-                                            Text("Create an account"))
-                                    
-                                }.foregroundColor(.black)
+                        HStack {
+                            NavigationLink(destination: Signup(appData: appData)) {
                                 
-                                Button {
-                                    Task { await authenticationManage() }
-                                } label: {
-                                    
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color(hue: 0.24, saturation: 0.109, brightness: 0.885))
-                                        .frame(width: 150, height: 50)
-                                        .overlay(
-                                            Text("Log in"))
-                                    
-                                }.foregroundColor(.black)
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.white)
+                                    .frame(width: 200, height: 50)
+                                    .overlay(
+                                        Text("Create an account"))
                                 
-                            }
+                            }.foregroundColor(.black)
+                            
+                            Button {
+                                Task { await authenticationManage() }
+                            } label: {
+                                
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color(hue: 0.24, saturation: 0.109, brightness: 0.885))
+                                    .frame(width: 150, height: 50)
+                                    .overlay(
+                                        Text("Log in"))
+                                
+                            }.foregroundColor(.black)
                         }
                     } else {
                         CustomProgress(withText: false)
