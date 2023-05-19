@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Dashboard: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var refreshDone: Bool = false
     @State var logoutActive: Bool = false
     @StateObject var appData: AppData
@@ -27,21 +28,32 @@ struct Dashboard: View {
                             }
                             
                             ForEach(appData.requests.map{$0.value}, id: \.self) { req in
-                                NavigationLink(destination: RequestDetails(appData: appData, request: req)) {
-                                    RequestBox(games: appData.games, request: req)
-                                        .frame(width: proxy.size.width * 0.92, height: proxy.size.height * 0.24)
-                                        .contextMenu{
-                                            Button(role: .destructive, action:{
+                                
+                                if req.user_id == appData.authData.username {
+                                    NavigationLink(destination: RequestDetails(appData: appData, request: req).toolbar {
+                                        ToolbarItem(placement: .navigationBarTrailing) {
+                                            Button {
                                                 let uuid = req.uuid
                                                 
                                                 Task {
                                                     await appData.deleteUserRequest(uuid: uuid)
+                                                    presentationMode.wrappedValue.dismiss()
                                                 }
-                                            }){
-                                                Text("Delete request")
-                                            }.disabled(req.user_id != appData.authData.username)
+                                            } label: {
+                                                Text("Delete")
+                                                    .foregroundColor(.red)
+                                            }
                                         }
-                                }.foregroundColor(.black)
+                                    }) {
+                                        RequestBox(games: appData.games, request: req)
+                                            .frame(width: proxy.size.width * 0.92, height: proxy.size.height * 0.24)
+                                    }.foregroundColor(.black)
+                                } else {
+                                    NavigationLink(destination: RequestDetails(appData: appData, request: req)) {
+                                        RequestBox(games: appData.games, request: req)
+                                            .frame(width: proxy.size.width * 0.92, height: proxy.size.height * 0.24)
+                                    }.foregroundColor(.black)
+                                }
                             }
                         }
                     }

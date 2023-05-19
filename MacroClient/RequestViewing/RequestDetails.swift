@@ -115,6 +115,6 @@ struct RequestDetails: View {
 
 struct RequestDetails_Previews: PreviewProvider {
     static var previews: some View {
-        RequestDetails(appData: AppData(), request: UserRequest(uuid: " ", user_id: "Example", game: "League of Legends", time: 120, mic: true, region: "ITA", pnumber: 2, skills: [], plat: "PC", mode: "Draft pick"))
+        RequestDetails(appData: AppData(), request: UserRequest(uuid: "na", user_id: "Creator username", game: "Game title", time: 5, mic: true, region: "REG", pnumber: 2, skills: [], plat: "PC", mode: "Game mode"))
     }
 }

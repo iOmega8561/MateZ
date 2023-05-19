@@ -11,8 +11,6 @@ struct GameSelection: View {
     @StateObject var appData: AppData
     @State var searchText: String = ""
     
-    
-    
     var body: some View {
         List(searchResults, id: \.self) { game in
             NavigationLink(destination: GameConfig(appData: appData, newRequest: UserRequest(
