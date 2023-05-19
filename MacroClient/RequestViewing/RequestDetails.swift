@@ -16,7 +16,8 @@ struct RequestDetails: View {
             Form {
                 Section(header: Text("Creator details")) {
                     HStack {
-                        RemoteImage(imgname: "user_generic")
+                        RemoteImage(imgname: "user_generic", squareSize: 70)
+                            .clipShape(Circle())
                         
                         Text(request.user_id)
                             .frame(width: proxy.size.width * 0.67)
