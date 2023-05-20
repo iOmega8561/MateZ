@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct RequestBox: View {
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
     let games: [String: Game]
     let request: UserRequest
     
-    let rG: RadialGradient = RadialGradient(colors: [ .white, .gray], center: .center, startRadius: 20, endRadius: 500)
+    let dark: RadialGradient = RadialGradient(colors: [Color(UIColor.systemGray4), Color(UIColor.systemGray6)], center: .center, startRadius: 20, endRadius: 200)
+    
+    let light: RadialGradient = RadialGradient(colors: [.white, .gray], center: .center, startRadius: 20, endRadius: 500)
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10.0)
-            .fill(rG)
-            .shadow(radius: 10.0)
+            .fill(colorScheme == .light ? light:dark)
+            .shadow(color: colorScheme == .light ? .secondary:.black, radius: 10.0)
             .overlay(
                 GeometryReader { proxy in
                     HStack {

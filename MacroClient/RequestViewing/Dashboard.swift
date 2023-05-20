@@ -47,12 +47,12 @@ struct Dashboard: View {
                                     }) {
                                         RequestBox(games: appData.games, request: req)
                                             .frame(width: proxy.size.width * 0.92, height: proxy.size.height * 0.24)
-                                    }.foregroundColor(.black)
+                                    }.foregroundColor(.primary)
                                 } else {
                                     NavigationLink(destination: RequestDetails(appData: appData, request: req)) {
                                         RequestBox(games: appData.games, request: req)
                                             .frame(width: proxy.size.width * 0.92, height: proxy.size.height * 0.24)
-                                    }.foregroundColor(.black)
+                                    }.foregroundColor(.primary)
                                 }
                             }
                         }

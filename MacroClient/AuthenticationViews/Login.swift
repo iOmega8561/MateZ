@@ -21,9 +21,10 @@ struct Login: View {
     var body: some View {
         NavigationView {
             ZStack {
-                
-                Color(red: 0.949, green: 0.949, blue: 0.971)
+                Color(UIColor.systemBackground)
                     .ignoresSafeArea()
+                /*Color(red: 0.949, green: 0.949, blue: 0.971)
+                    .ignoresSafeArea()*/
                 
                 VStack(spacing: 28) {
                     Spacer()
@@ -47,10 +48,10 @@ struct Login: View {
                         
                         TextField("", text: $username)
                             .frame(height: 44)
-                            .background(Color.white)
+                            .background(Color(UIColor.systemFill))
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding(.horizontal)
-                            .font(.system(size: 17.0))
+                            .font(.system(size: 20.0))
                             .autocapitalization(.none)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
@@ -67,10 +68,10 @@ struct Login: View {
                         
                         SecureField("", text: $password)
                             .frame(height: 44)
-                            .background(Color.white)
+                            .background(Color(UIColor.systemFill))
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding(.horizontal)
-                            .font(.system(size: 17.0))
+                            .font(.system(size: 20.0))
                             .autocapitalization(.none)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
@@ -92,12 +93,12 @@ struct Login: View {
                             NavigationLink(destination: Signup(appData: appData)) {
                                 
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.white)
+                                    .fill(Color(UIColor.systemFill))
                                     .frame(width: 200, height: 50)
                                     .overlay(
                                         Text("Create an account"))
                                 
-                            }.foregroundColor(.black)
+                            }.foregroundColor(.primary)
                             
                             Button {
                                 Task { await authenticationManage() }

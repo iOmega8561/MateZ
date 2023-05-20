@@ -46,7 +46,7 @@ struct RequestDetails: View {
                         
                         
                         HStack {
-                            Text(skill).foregroundColor(.black)
+                            Text(skill)
                             
                             if request.skills.isEmpty || request.skills.firstIndex(of: skill) != nil {
                                 Spacer()
