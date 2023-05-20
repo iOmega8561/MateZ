@@ -16,8 +16,10 @@ struct Profile: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color(red: 0.949, green: 0.949, blue: 0.971)
+                Color(UIColor.systemGroupedBackground)
                     .ignoresSafeArea()
+                /*Color(red: 0.949, green: 0.949, blue: 0.971)
+                    .ignoresSafeArea()*/
                 
                 VStack {
                     Spacer().frame(height: 10)
@@ -52,8 +54,6 @@ struct Profile: View {
                     }
                 }
             }
-            .navigationTitle("Your profile")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

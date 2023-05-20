@@ -25,7 +25,7 @@ struct Signup: View {
     
     var body: some View {
         ZStack {
-            Color(red: 0.949, green: 0.949, blue: 0.971)
+            Color(UIColor.systemBackground)
                 .ignoresSafeArea()
             
             VStack(spacing: 28) {
@@ -47,10 +47,10 @@ struct Signup: View {
                     
                     TextField("", text: $username)
                         .frame(height: 44)
-                        .background(Color.white)
+                        .background(Color(UIColor.systemFill))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .padding(.horizontal)
-                        .font(.system(size: 17.0))
+                        .font(.system(size: 20.0))
                         .autocapitalization(.none)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
@@ -67,10 +67,10 @@ struct Signup: View {
                     
                     SecureField("", text: $password)
                         .frame(height: 44)
-                        .background(Color.white)
+                        .background(Color(UIColor.systemFill))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .padding(.horizontal)
-                        .font(.system(size: 17.0))
+                        .font(.system(size: 20.0))
                         .autocapitalization(.none)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
@@ -87,10 +87,10 @@ struct Signup: View {
                     
                     SecureField("", text: $password2)
                         .frame(height: 44)
-                        .background(Color.white)
+                        .background(Color(UIColor.systemFill))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .padding(.horizontal)
-                        .font(.system(size: 17.0))
+                        .font(.system(size: 20.0))
                         .autocapitalization(.none)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)

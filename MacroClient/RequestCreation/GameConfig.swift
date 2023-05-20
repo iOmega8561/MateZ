@@ -39,7 +39,7 @@ struct GameConfig: View {
                         } else { newRequest.skills.append(skill) }
                     } label: {
                         HStack {
-                            Text(skill).foregroundColor(.black)
+                            Text(skill).foregroundColor(.primary)
                             
                             if newRequest.skills.firstIndex(of: skill) != nil {
                                 Spacer()
