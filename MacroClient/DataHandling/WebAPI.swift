@@ -25,6 +25,30 @@ class WebAPI {
         return response.answer
     }
     
+    func updateUser(token: String, profile: UserProfile)  async throws -> String {
+        let api = APIRequest<SimpleResponse>(
+            urlString: "\(apiURLBase)/updateuser",
+            queryItems: [
+                URLQueryItem(name: "username", value: profile.username),
+                URLQueryItem(name: "token", value: token),
+                URLQueryItem(name: "avatar", value: profile.avatar)
+            ])
+        
+        let response = try await request(api)
+        return response.answer
+    }
+    
+    func getProfile(username: String)  async throws -> UserProfile {
+        let api = APIRequest<UserProfile>(
+            urlString: "\(apiURLBase)/getprofile",
+            queryItems: [
+                URLQueryItem(name: "username", value: username)
+            ])
+        
+        let response = try await request(api)
+        return response
+    }
+    
     func lastsession(username: String, token: String) async throws -> String {
         let api = APIRequest<SimpleResponse>(
             urlString: "\(apiURLBase)/lastsession",
