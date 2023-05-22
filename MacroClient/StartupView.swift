@@ -42,7 +42,10 @@ struct StartupView: View {
                     let response = await appData.lastsession()
                     
                     if response == "Success" {
-                        loggedIn = true
+                        if let data = await appData.getProfile(username: appData.authData.username) {
+                            appData.localProfile = data
+                            loggedIn = true
+                        }
                     }
                 }
                 

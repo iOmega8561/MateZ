@@ -8,8 +8,13 @@
 import Foundation
 
 struct LocalAuthData: Codable {
-    var token: String
-    var username: String
+    var token: String = "na"
+    var username: String = "na"
+}
+
+struct UserProfile: Codable {
+    var username: String = "na"
+    var avatar: String = "user_generic"
 }
 
 struct Game: Codable, Hashable {

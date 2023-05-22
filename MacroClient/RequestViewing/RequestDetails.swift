@@ -9,20 +9,24 @@ import SwiftUI
 
 struct RequestDetails: View {
     @StateObject var appData: AppData
+    @State var creatorData: UserProfile = UserProfile()
+    @State var isLoading: Bool = true
     let request: UserRequest
     
     var body: some View {
         GeometryReader { proxy in
             Form {
-                Section(header: Text("Creator details")) {
-                    HStack {
-                        RemoteImage(imgname: "user_generic", squareSize: 70)
-                            .clipShape(Circle())
-                        
-                        Text(request.user_id)
-                            .frame(width: proxy.size.width * 0.67)
-                            .font(.system(size: 25, weight: .semibold))
-                            .lineLimit(1)
+                if !isLoading {
+                    Section(header: Text("Creator details")) {
+                        HStack {
+                            RemoteImage(imgname: creatorData.avatar, squareSize: 70)
+                                .clipShape(Circle())
+                            
+                            Text(creatorData.username)
+                                .frame(width: proxy.size.width * 0.67)
+                                .font(.system(size: 25, weight: .semibold))
+                                .lineLimit(1)
+                        }
                     }
                 }
                 
@@ -110,6 +114,12 @@ struct RequestDetails: View {
             }
         }
         .navigationTitle("Request details")
+        .task {
+            if let data = await appData.getProfile(username: request.user_id) {
+                creatorData = data
+                isLoading = false
+            }
+        }
     }
 }
 

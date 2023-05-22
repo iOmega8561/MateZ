@@ -12,6 +12,7 @@ struct Profile: View {
     @Binding var loggedIn: Bool
     
     @State var showDialog: Bool = false
+    @State var showModal: Bool = false
     
     var body: some View {
         NavigationView {
@@ -24,10 +25,23 @@ struct Profile: View {
                 VStack {
                     Spacer().frame(height: 10)
                     
-                    RemoteImage(imgname: "user_generic", squareSize: 130)
-                        .clipShape(Circle())
+                    ZStack(alignment: .bottomTrailing) {
+                        RemoteImage(imgname: appData.localProfile.avatar, squareSize: 130)
+                            .clipShape(Circle())
+                            .frame(width: 130, height: 130)
+                        
+                        Button(action: {showModal = true}) {
+                            Image(systemName: "pencil.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30)
+                                .padding(.horizontal)
+                        }.sheet(isPresented: $showModal) {
+                            AvatarPicker(appData: appData)
+                        }
+                    }
                     
-                    Text(appData.authData.username)
+                    Text(appData.localProfile.username)
                         .font(.title)
                     
                     Form {
@@ -54,7 +68,7 @@ struct Profile: View {
                     }
                 }
             }
-        }
+        }.navigationViewStyle(.stack)
     }
 }
 

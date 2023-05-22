@@ -144,11 +144,15 @@ struct Login: View {
         } else {
             usernameError = false; passError = false; asyncError = false
             
-            do {
-                try await appData.save()
-            } catch { print("Error saving authData") }
-            
-            loggedIn = true
+            if let data = await appData.getProfile(username: appData.authData.username) {
+                appData.localProfile = data
+                
+                do {
+                    try await appData.save()
+                } catch { print("Error saving authData") }
+                
+                loggedIn = true
+            }
         }
         
         isLoading = false

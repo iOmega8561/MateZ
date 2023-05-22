@@ -13,8 +13,8 @@ let mainRegions = ["ABW", "AFG", "AGO", "AIA", "ALA", "ALB", "AND", "ARE", "ARG"
 class AppData: ObservableObject {
     private let webAPI: WebAPI = WebAPI()
     
-    @Published var authData: LocalAuthData = LocalAuthData(token: "na", username: "na")
-    
+    @Published var authData: LocalAuthData = LocalAuthData()
+    @Published var localProfile: UserProfile = UserProfile()
     @Published var games: [String: Game] = [:]
     @Published var requests: [String: UserRequest] = [:]
     
@@ -31,7 +31,7 @@ class AppData: ObservableObject {
             let fileURL = try Self.fileURL()
 
             guard let data = try? Data(contentsOf: fileURL) else {
-                return LocalAuthData(token: "na", username: "na")
+                return LocalAuthData()
             }
             let authData = try JSONDecoder().decode(LocalAuthData.self, from: data)
             return authData
@@ -49,6 +49,23 @@ class AppData: ObservableObject {
             try data.write(to: outfile)
         }
         _ = try await task.value
+    }
+    
+    func updateUser() async {
+        do {
+            let _ = try await webAPI.updateUser(token: authData.token, profile: localProfile)
+        } catch {
+            print("Error updating profile \(String(describing: error))")
+        }
+    }
+    
+    func getProfile(username: String) async -> UserProfile? {
+        do {
+            return try await webAPI.getProfile(username: username)
+        } catch {
+            print("Error retrieving profile \(username) \(String(describing: error))")
+            return nil
+        }
     }
     
     func logout() async {
