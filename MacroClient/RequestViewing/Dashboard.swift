@@ -58,7 +58,7 @@ struct Dashboard: View {
                         }
                     }
                     .refreshable {
-                        refreshDone = await appData.fetchUserRequests()
+                        _ = await appData.fetchUserRequests()
                     }
                     .navigationViewStyle(StackNavigationViewStyle())
                     .navigationTitle("Requests")
