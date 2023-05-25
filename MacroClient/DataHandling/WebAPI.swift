@@ -31,7 +31,8 @@ class WebAPI {
             queryItems: [
                 URLQueryItem(name: "username", value: profile.username),
                 URLQueryItem(name: "token", value: token),
-                URLQueryItem(name: "avatar", value: profile.avatar)
+                URLQueryItem(name: "avatar", value: profile.avatar),
+                URLQueryItem(name: "fgames", value: String(decoding: try JSONEncoder().encode(profile.fgames), as: UTF8.self))
             ])
         
         let response = try await request(api)

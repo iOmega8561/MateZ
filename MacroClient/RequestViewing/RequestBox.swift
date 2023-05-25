@@ -19,8 +19,9 @@ struct RequestBox: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10.0)
-            .fill(colorScheme == .light ? light:dark)
-            .shadow(color: colorScheme == .light ? .secondary:.black, radius: 10.0)
+            .fill(Color(UIColor.secondarySystemGroupedBackground))
+            //.fill(colorScheme == .light ? light:dark)
+            //.shadow(color: colorScheme == .light ? .secondary:.black, radius: 3)
             .overlay(
                 GeometryReader { proxy in
                     HStack {
