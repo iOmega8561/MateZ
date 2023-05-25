@@ -12,9 +12,15 @@ struct LocalAuthData: Codable {
     var username: String = "na"
 }
 
+struct FavouriteGame: Codable, Hashable {
+    var name: String
+    var plat: [String]
+}
+
 struct UserProfile: Codable {
     var username: String = "na"
     var avatar: String = "user_generic"
+    var fgames: [FavouriteGame] = []
 }
 
 struct Game: Codable, Hashable {

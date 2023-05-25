@@ -13,42 +13,30 @@ struct Dashboard: View {
     @State var logoutActive: Bool = false
     @StateObject var appData: AppData
     
+    var notMyRequests: [String: UserRequest] {
+        return appData.requests.filter {
+            $0.value.user_id != appData.authData.username
+        }
+    }
+    
     var body: some View {
         NavigationView {
-            GeometryReader { proxy in
+            ZStack {
+                Color(UIColor.systemGroupedBackground).ignoresSafeArea()
                 
-                if !refreshDone {
-                    CustomProgress(withText: true)
-                } else {
+                GeometryReader { proxy in
                     
-                    ScrollView {
-                        LazyVStack {
-                            if appData.requests.count < 1 {
-                                Text("")
-                            }
-                            
-                            ForEach(appData.requests.map{$0.value}, id: \.self) { req in
+                    if !refreshDone {
+                        CustomProgress(withText: true)
+                    } else {
+                        
+                        ScrollView {
+                            LazyVStack {
+                                if appData.requests.count < 1 {
+                                    Text("")
+                                }
                                 
-                                if req.user_id == appData.authData.username {
-                                    NavigationLink(destination: RequestDetails(appData: appData, request: req).toolbar {
-                                        ToolbarItem(placement: .navigationBarTrailing) {
-                                            Button {
-                                                let uuid = req.uuid
-                                                
-                                                Task {
-                                                    await appData.deleteUserRequest(uuid: uuid)
-                                                    presentationMode.wrappedValue.dismiss()
-                                                }
-                                            } label: {
-                                                Text("Delete")
-                                                    .foregroundColor(.red)
-                                            }
-                                        }
-                                    }) {
-                                        RequestBox(games: appData.games, request: req)
-                                            .frame(width: proxy.size.width * 0.92, height: proxy.size.height * 0.24)
-                                    }.foregroundColor(.primary)
-                                } else {
+                                ForEach(notMyRequests.map{$0.value}, id: \.self) { req in
                                     NavigationLink(destination: RequestDetails(appData: appData, request: req)) {
                                         RequestBox(games: appData.games, request: req)
                                             .frame(width: proxy.size.width * 0.92, height: proxy.size.height * 0.24)
@@ -56,18 +44,18 @@ struct Dashboard: View {
                                 }
                             }
                         }
-                    }
-                    .refreshable {
-                        _ = await appData.fetchUserRequests()
-                    }
-                    .navigationViewStyle(StackNavigationViewStyle())
-                    .navigationTitle("Requests")
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            NavigationLink(destination: GameSelection(appData: appData)) {
-                                HStack {
-                                    Text("New")
-                                    Image(systemName: "plus")
+                        .refreshable {
+                            _ = await appData.fetchUserRequests()
+                        }
+                        .navigationViewStyle(StackNavigationViewStyle())
+                        .navigationTitle("Requests")
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                NavigationLink(destination: GameSelection(appData: appData)) {
+                                    HStack {
+                                        Text("New")
+                                        Image(systemName: "plus")
+                                    }
                                 }
                             }
                         }
