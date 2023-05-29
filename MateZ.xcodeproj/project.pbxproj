@@ -36,7 +36,7 @@
 		E31CD9172A1662FE00C7C8CC /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
 		E31CD9192A16638100C7C8CC /* RequestDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetails.swift; sourceTree = "<group>"; };
 		E31CD91B2A167FDB00C7C8CC /* StartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupView.swift; sourceTree = "<group>"; };
-		E3371FA129F8438800A5F810 /* MacroClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacroClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3371FA129F8438800A5F810 /* MateZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MateZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3371FA429F8438800A5F810 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E3371FA829F8438900A5F810 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3371FAB29F8438900A5F810 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 		E3371F9829F8438800A5F810 = {
 			isa = PBXGroup;
 			children = (
-				E3371FA329F8438800A5F810 /* MacroClient */,
+				E3371FA329F8438800A5F810 /* MateZ */,
 				E3371FA229F8438800A5F810 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,12 +77,12 @@
 		E3371FA229F8438800A5F810 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E3371FA129F8438800A5F810 /* MacroClient.app */,
+				E3371FA129F8438800A5F810 /* MateZ.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E3371FA329F8438800A5F810 /* MacroClient */ = {
+		E3371FA329F8438800A5F810 /* MateZ */ = {
 			isa = PBXGroup;
 			children = (
 				E3371FA429F8438800A5F810 /* App.swift */,
@@ -97,7 +97,7 @@
 				E3371FB729F84EF500A5F810 /* LaunchScreen.storyboard */,
 				E3371FAA29F8438900A5F810 /* Preview Content */,
 			);
-			path = MacroClient;
+			path = MateZ;
 			sourceTree = "<group>";
 		};
 		E3371FAA29F8438900A5F810 /* Preview Content */ = {
@@ -169,9 +169,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E3371FA029F8438800A5F810 /* MacroClient */ = {
+		E3371FA029F8438800A5F810 /* MateZ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E3371FAF29F8438900A5F810 /* Build configuration list for PBXNativeTarget "MacroClient" */;
+			buildConfigurationList = E3371FAF29F8438900A5F810 /* Build configuration list for PBXNativeTarget "MateZ" */;
 			buildPhases = (
 				E3371F9D29F8438800A5F810 /* Sources */,
 				E3371F9E29F8438800A5F810 /* Frameworks */,
@@ -181,9 +181,9 @@
 			);
 			dependencies = (
 			);
-			name = MacroClient;
+			name = MateZ;
 			productName = iOSwebtest;
-			productReference = E3371FA129F8438800A5F810 /* MacroClient.app */;
+			productReference = E3371FA129F8438800A5F810 /* MateZ.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -201,7 +201,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E3371F9C29F8438800A5F810 /* Build configuration list for PBXProject "MacroClient" */;
+			buildConfigurationList = E3371F9C29F8438800A5F810 /* Build configuration list for PBXProject "MateZ" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -214,7 +214,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E3371FA029F8438800A5F810 /* MacroClient */,
+				E3371FA029F8438800A5F810 /* MateZ */,
 			);
 		};
 /* End PBXProject section */
@@ -382,7 +382,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MacroClient/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MateZ/Preview Content\"";
 				DEVELOPMENT_TEAM = T8HX5554JX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -414,7 +414,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MacroClient/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MateZ/Preview Content\"";
 				DEVELOPMENT_TEAM = T8HX5554JX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -442,7 +442,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E3371F9C29F8438800A5F810 /* Build configuration list for PBXProject "MacroClient" */ = {
+		E3371F9C29F8438800A5F810 /* Build configuration list for PBXProject "MateZ" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E3371FAD29F8438900A5F810 /* Debug */,
@@ -451,7 +451,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E3371FAF29F8438900A5F810 /* Build configuration list for PBXNativeTarget "MacroClient" */ = {
+		E3371FAF29F8438900A5F810 /* Build configuration list for PBXNativeTarget "MateZ" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E3371FB029F8438900A5F810 /* Debug */,
