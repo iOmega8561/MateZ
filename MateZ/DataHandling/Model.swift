@@ -46,6 +46,7 @@ struct UserRequest: Codable, Hashable {
     var skills: [String]
     var plat: String
     var mode: String
+    var date: Date
 }
 
 class ServerRequests: Codable {

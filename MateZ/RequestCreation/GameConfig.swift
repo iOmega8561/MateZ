@@ -29,23 +29,24 @@ struct GameConfig: View {
                     }
                 }.pickerStyle(.wheel)
             }
-            
-            Section(header: Text("Select roles to search for")) {
-                ForEach(appData.games[newRequest.game]!.skills, id: \.self) { skill in
-                    
-                    Button {
-                        if let index = newRequest.skills.firstIndex(of: skill) {
-                            newRequest.skills.remove(at: index)
-                        } else { newRequest.skills.append(skill) }
-                    } label: {
-                        HStack {
-                            Text(skill).foregroundColor(.primary)
-                            
-                            if newRequest.skills.firstIndex(of: skill) != nil {
-                                Spacer()
-                                Image(systemName: "checkmark")
-                                    .renderingMode(.template)
-                                    .foregroundColor(.blue)
+            if appData.games[newRequest.game]!.skills.count > 0 {
+                Section(header: Text("Select roles to search for")) {
+                    ForEach(appData.games[newRequest.game]!.skills, id: \.self) { skill in
+                        
+                        Button {
+                            if let index = newRequest.skills.firstIndex(of: skill) {
+                                newRequest.skills.remove(at: index)
+                            } else { newRequest.skills.append(skill) }
+                        } label: {
+                            HStack {
+                                Text(skill).foregroundColor(.primary)
+                                
+                                if newRequest.skills.firstIndex(of: skill) != nil {
+                                    Spacer()
+                                    Image(systemName: "checkmark")
+                                        .renderingMode(.template)
+                                        .foregroundColor(.blue)
+                                }
                             }
                         }
                     }

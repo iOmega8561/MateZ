@@ -20,71 +20,72 @@ struct RequestBox: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 10.0)
             .fill(Color(UIColor.secondarySystemGroupedBackground))
-            //.fill(colorScheme == .light ? light:dark)
-            //.shadow(color: colorScheme == .light ? .secondary:.black, radius: 3)
+        //.fill(colorScheme == .light ? light:dark)
+        //.shadow(color: colorScheme == .light ? .secondary:.black, radius: 3)
             .overlay(
-                GeometryReader { proxy in
-                    HStack {
+                HStack {
+                    
+                    Spacer().frame(width: 15)
+                    
+                    VStack {
+                        Spacer().frame(height: 15)
                         
-                        Spacer().frame(width: proxy.size.width * 0.05)
-                        
-                        VStack {
-                            Spacer().frame(height: proxy.size.height * 0.07)
+                        HStack {
+                            RemoteImage(imgname: games[request.game]?.imgname ?? "game_generic")
+                                .frame(width: 60.0, height: 60.0)
+                                .shadow(radius: 4.0)
                             
-                            HStack {
-                                RemoteImage(imgname: games[request.game]?.imgname ?? "game_generic")
-                                    .frame(width: 60.0, height: 60.0)
-                                    .shadow(radius: 4.0)
-                                
-                                Spacer().frame(maxWidth: proxy.size.width * 0.01)
-                                
-                                VStack {
+                            Spacer().frame(width: 10)
+                            
+                            VStack {
+                                HStack {
                                     Text(request.game)
-                                        .frame(width: proxy.size.width * 0.70)
+                                    
                                         .font(.system(size: 25, weight: .semibold))
                                         .lineLimit(1)
+                                    Spacer()
+                                }.padding(.leading)
+                                
+                                HStack {
+                                    Spacer().frame(width: 10)
+                                    Text("👤 \(request.pnumber)   \(request.skills.count > 0 ? request.skills.joined(separator: ", "):"Any role")")
+                                        .font(.system(size: 20, weight: .semibold))
+                                        .lineLimit(1)
                                     
-                                    HStack {
-                                        Spacer().frame(maxWidth: proxy.size.width * 0.07)
-                                        Text("👤 \(request.pnumber)   \(request.skills.count > 0 ? request.skills.joined(separator: ", "):"Any role")")
-                                            .font(.system(size: 20, weight: .semibold))
-                                            .lineLimit(1)
-                                        
-                                        Spacer()
-                                    }
+                                    Spacer()
                                 }
                             }
+                        }
+                        
+                        Spacer()
+                        
+                        HStack {
+                            Spacer().frame(width: 5)
+                            
+                            Image(request.plat)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 35.0, height: 35.0)
+                            
+                            Spacer().frame(width: 10)
+                            
+                            Text("🎮 \(request.mode)")
+                                .font(.system(size: 20, weight: .semibold))
+                                .lineLimit(1)
                             
                             Spacer()
                             
-                            HStack {
-                                Spacer().frame(width: proxy.size.width * 0.045)
-                                
-                                Image(request.plat)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 35.0, height: 35.0)
-                                
-                                Spacer()
-                                
-                                Text("🎮 \(request.mode)")
-                                    .font(.system(size: 20, weight: .semibold))
-                                    .lineLimit(1)
-                                
-                                Spacer().frame(width: proxy.size.width * 0.045)
-                                
-                                Text("🌎 \(request.region)")
-                                    .font(.system(size: 20, weight: .semibold))
-                                    .lineLimit(1)
-                                
-                                Spacer().frame(width: proxy.size.width * 0.045)
-                            }
+                            Text("🌎 \(request.region)")
+                                .font(.system(size: 20, weight: .semibold))
+                                .lineLimit(1)
                             
-                            Spacer().frame(height: proxy.size.height * 0.07)
+                            Spacer().frame(width: 5)
                         }
                         
-                        Spacer().frame(width: proxy.size.width * 0.05)
+                        Spacer().frame(height: 15)
                     }
+                    
+                    Spacer().frame(width: 15)
                 }
             )
     }
