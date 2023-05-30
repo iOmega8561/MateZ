@@ -116,7 +116,9 @@ struct Profile: View {
                                     LazyHStack {
                                         ForEach(appData.localProfile.fgames, id: \.self) { g in
                                             VStack {
-                                                RemoteImage(imgname: appData.games[g.name]?.imgname ?? "game_default").padding()
+                                                RemoteImage(imgname: appData.games[g.name]?.imgname ?? "game_default")
+                                                    .frame(width: 60, height: 60)
+                                                    .padding()
                                                 HStack {
                                                     ForEach(g.plat, id: \.self) { p in
                                                         Image(p)

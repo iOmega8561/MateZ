@@ -44,27 +44,29 @@ struct RequestDetails: View {
                     }
                 }
                 
-                Section(header: Text("Available roles")) {
-                    
-                    ForEach(appData.games[request.game]?.skills ?? [], id: \.self) { skill in
+                if appData.games[request.game]!.skills.count > 0 {
+                    Section(header: Text("Available roles")) {
                         
-                        
-                        HStack {
-                            Text(skill)
+                        ForEach(appData.games[request.game]!.skills, id: \.self) { skill in
                             
-                            if request.skills.isEmpty || request.skills.firstIndex(of: skill) != nil {
-                                Spacer()
-                                Image(systemName: "checkmark")
-                                    .renderingMode(.template)
-                                    .foregroundColor(.blue)
-                            } else {
-                                Spacer()
-                                Image(systemName: "xmark")
-                                    .renderingMode(.template)
-                                    .foregroundColor(.red)
+                            
+                            HStack {
+                                Text(skill)
+                                
+                                if request.skills.isEmpty || request.skills.firstIndex(of: skill) != nil {
+                                    Spacer()
+                                    Image(systemName: "checkmark")
+                                        .renderingMode(.template)
+                                        .foregroundColor(.blue)
+                                } else {
+                                    Spacer()
+                                    Image(systemName: "xmark")
+                                        .renderingMode(.template)
+                                        .foregroundColor(.red)
+                                }
                             }
+                            
                         }
-                        
                     }
                 }
                 
@@ -125,6 +127,6 @@ struct RequestDetails: View {
 
 struct RequestDetails_Previews: PreviewProvider {
     static var previews: some View {
-        RequestDetails(appData: AppData(), request: UserRequest(uuid: "na", user_id: "Creator username", game: "Game title", time: 5, mic: true, region: "REG", pnumber: 2, skills: [], plat: "PC", mode: "Game mode"))
+        RequestDetails(appData: AppData(), request: UserRequest(uuid: "na", user_id: "Creator username", game: "Game title", time: 5, mic: true, region: "REG", pnumber: 2, skills: [], plat: "PC", mode: "Game mode", date: Date.now))
     }
 }

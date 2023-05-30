@@ -19,6 +19,8 @@ struct FavouritePicker: View {
                     name: game, plat: []
                 )).navigationTitle("Platform")) {
                     HStack {
+                        RemoteImage(imgname: appData.games[game]!.imgname, squareSize: 35)
+                            .frame(width: 35, height: 35)
                         Text(game)
                     }
                 }
@@ -34,6 +36,11 @@ struct FavouritePicker: View {
             }
         }
         .navigationViewStyle(.stack)
+        .task {
+            if searchResults.count < 1 {
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
     }
     
     var fgamesList: [String] {
@@ -44,12 +51,11 @@ struct FavouritePicker: View {
         if searchText.isEmpty {
             return appData.games.map{$0.key}.filter{
                 !fgamesList.contains($0)
-            }
+            }.sorted()
         } else {
             return appData.games.map{$0.key}.filter {
                 $0.contains(searchText) && !fgamesList.contains($0)
-            }
-        }
+            }.sorted()        }
     }
 }
 

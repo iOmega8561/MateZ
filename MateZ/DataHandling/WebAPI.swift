@@ -172,7 +172,14 @@ extension APIRequest {
         self.urlString = urlString
         self.queryItems = queryItems
         self.decodeJSON = { data in
-            return try JSONDecoder().decode(T.self, from: data)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+
+            
+            return try decoder.decode(T.self, from: data)
         }
     }
 }

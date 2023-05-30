@@ -23,9 +23,12 @@ struct GameSelection: View {
                 pnumber: 1,
                 skills: [],
                 plat: appData.games[game]!.plat[0],
-                mode: appData.games[game]!.modes[0]
+                mode: appData.games[game]!.modes[0],
+                date: Date.now
             ))) {
                 HStack {
+                    RemoteImage(imgname: appData.games[game]!.imgname, squareSize: 35)
+                        .frame(width: 35, height: 35)
                     Text(game)
                 }
             }
@@ -36,7 +39,7 @@ struct GameSelection: View {
     
     var searchResults: [String] {
         if searchText.isEmpty {
-            return appData.games.map{$0.key}
+            return appData.games.map{$0.key}.sorted()
         } else {
             return appData.games.map{$0.key}.filter { $0.contains(searchText) }
         }
