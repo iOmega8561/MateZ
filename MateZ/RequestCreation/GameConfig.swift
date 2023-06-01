@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct GameConfig: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+    @Environment(\.dismiss) private var dismiss
+
     @StateObject var appData: AppData
-    
     @State var newRequest: UserRequest
+    @State var showModal: Bool = false
     
     var body: some View {
         Form {
@@ -45,7 +45,7 @@ struct GameConfig: View {
                                     Spacer()
                                     Image(systemName: "checkmark")
                                         .renderingMode(.template)
-                                        .foregroundColor(.blue)
+                                        .foregroundColor(.accentColor)
                                 }
                             }
                         }
@@ -60,11 +60,32 @@ struct GameConfig: View {
                 
                 Stepper("Expiration time: \(newRequest.time) min", value: $newRequest.time, in: 5...120, step: 5)
                 
-                Picker("Region", selection: $newRequest.region) {
-                    ForEach(mainRegions, id: \.self) { region in
-                        Text(region)
+                Button(action: {showModal.toggle()}) {
+                    HStack {
+                        Text("Region")
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        Text(regions.first(where: {$1 == newRequest.region})?.key ?? "N/A")
+                            .foregroundColor(.accentColor)
+                            
+                        Image(newRequest.region)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 35)
+                        
+                        Image(systemName: "chevron.up.chevron.down")
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(.secondary)
+                            .scaledToFit()
+                            .frame(width: 10)
                     }
-                }.pickerStyle(.menu)
+                }
+                .sheet(isPresented: $showModal) {
+                    RegionSelect(alpha2Bind: $newRequest.region)
+                }
             }
         }
         .navigationTitle(newRequest.game)
@@ -75,7 +96,7 @@ struct GameConfig: View {
                         await appData.insertUserRequest(newRequest: newRequest)
                         _ = await appData.fetchUserRequests()
                     }
-                    self.presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 } label: {
                     Text("Save and Exit")
                 }

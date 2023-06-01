@@ -101,8 +101,13 @@ struct RequestDetails: View {
                         Text("🌎 Region:")
                             .font(.title3)
                         Spacer()
-                        Text("\(request.region)")
+                        Text(request.region.uppercased())
                             .font(.headline)
+                        
+                        Image(request.region.lowercased())
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 35)
                     }
                     
                     HStack {
