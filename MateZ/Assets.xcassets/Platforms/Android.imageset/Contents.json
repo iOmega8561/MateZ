@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "android.png",
+      "filename" : "Android platform.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "android 1.png",
+      "filename" : "Android platform 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "android 2.png",
+      "filename" : "Android platform 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

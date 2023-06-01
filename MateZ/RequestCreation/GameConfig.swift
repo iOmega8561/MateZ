@@ -14,77 +14,171 @@ struct GameConfig: View {
     @State var newRequest: UserRequest
     @State var showModal: Bool = false
     
+    private let defPlats = ["XBOX", "PlayStation", "PC", "Android", "iOS", "Switch"]
+    
     var body: some View {
-        Form {
-            Section(header: Text("Select platform and game mode")) {
-                Picker("Platform", selection: $newRequest.plat) {
-                    ForEach(appData.games[newRequest.game]!.plat, id: \.self) { plat in
-                        Text(plat)
-                    }
-                }.pickerStyle(.segmented)
-                
-                Picker("Gamemodes", selection: $newRequest.mode) {
-                    ForEach(appData.games[newRequest.game]!.modes, id: \.self) { mode in
-                        Text(mode)
-                    }
-                }.pickerStyle(.wheel)
-            }
-            if appData.games[newRequest.game]!.skills.count > 0 {
-                Section(header: Text("Select roles to search for")) {
-                    ForEach(appData.games[newRequest.game]!.skills, id: \.self) { skill in
+        ZStack {
+            Color(UIColor.systemGroupedBackground)
+                .ignoresSafeArea()
+            
+            ScrollView {
+                VStack(spacing: 30) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("SELECT PLATFORM")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                            .padding(.horizontal)
                         
-                        Button {
-                            if let index = newRequest.skills.firstIndex(of: skill) {
-                                newRequest.skills.remove(at: index)
-                            } else { newRequest.skills.append(skill) }
-                        } label: {
-                            HStack {
-                                Text(skill).foregroundColor(.primary)
-                                
-                                if newRequest.skills.firstIndex(of: skill) != nil {
-                                    Spacer()
-                                    Image(systemName: "checkmark")
-                                        .renderingMode(.template)
-                                        .foregroundColor(.accentColor)
+                        HStack {
+                            Spacer()
+                            ForEach(defPlats, id: \.self) { plat in
+                                VStack {
+                                    Button(action: {newRequest.plat = plat}) {
+                                        Image(plat)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 45)
+                                            .grayscale(appData.games[newRequest.game]!.plat.contains(plat) ? 0:1)
+                                        
+                                    }
+                                    .disabled(!appData.games[newRequest.game]!.plat.contains(plat))
+                                    .frame(width: 45)
+                                    
+                                    if newRequest.plat == plat {
+                                        RoundedRectangle(cornerRadius: 2)
+                                            .fill(Color.accentColor)
+                                            .frame(width: 42, height: 3)
+                                    }
                                 }
+                                Spacer()
                             }
                         }
                     }
-                }
-            }
-            
-            Section(header: Text("Other details")) {
-                Toggle("Microphone required", isOn: $newRequest.mic)
-                
-                Stepper("Players needed: \(newRequest.pnumber)", value: $newRequest.pnumber, in: 1...20, step: 1)
-                
-                Stepper("Expiration time: \(newRequest.time) min", value: $newRequest.time, in: 5...120, step: 5)
-                
-                Button(action: {showModal.toggle()}) {
-                    HStack {
-                        Text("Region")
-                            .foregroundColor(.primary)
+                    
+                    VStack(alignment: .leading, spacing: 5) {
                         
-                        Spacer()
-                        
-                        Text(regions.first(where: {$1 == newRequest.region})?.key ?? "N/A")
-                            .foregroundColor(.accentColor)
-                            
-                        Image(newRequest.region)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 35)
-                        
-                        Image(systemName: "chevron.up.chevron.down")
-                            .resizable()
-                            .renderingMode(.template)
+                        Text("SELECT GAMEMODE")
+                            .font(.headline)
                             .foregroundColor(.secondary)
-                            .scaledToFit()
-                            .frame(width: 10)
+                            .padding(.horizontal)
+                        
+                        Picker("Gamemodes", selection: $newRequest.mode) {
+                            ForEach(appData.games[newRequest.game]!.modes, id: \.self) { mode in
+                                Text(mode)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        .background(Color(UIColor.secondarySystemGroupedBackground))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .padding(.horizontal)
                     }
-                }
-                .sheet(isPresented: $showModal) {
-                    RegionSelect(alpha2Bind: $newRequest.region)
+                    
+                    if appData.games[newRequest.game]!.skills.count > 0 {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("SELECT GAME ROLES")
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                                .padding(.horizontal)
+                            
+                            ForEach(appData.games[newRequest.game]!.skills, id: \.self) { skill in
+                                
+                                Button {
+                                    if let index = newRequest.skills.firstIndex(of: skill) {
+                                        newRequest.skills.remove(at: index)
+                                    } else { newRequest.skills.append(skill) }
+                                } label: {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color(UIColor.secondarySystemGroupedBackground))
+                                        .frame(height: 40.0)
+                                        .overlay {
+                                            HStack {
+                                                Text(skill).foregroundColor(.primary)
+                                                
+                                                Spacer()
+                                                
+                                                if newRequest.skills.firstIndex(of: skill) != nil {
+                                                    
+                                                    Image(systemName: "checkmark")
+                                                        .renderingMode(.template)
+                                                        .foregroundColor(.accentColor)
+                                                }
+                                            }.padding(.horizontal)
+                                        }
+                                }
+                                .padding(.horizontal)
+                            }
+                        }
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("OTHER DETAILS")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                            .padding(.horizontal)
+                        
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(UIColor.secondarySystemGroupedBackground))
+                            .frame(height: 40.0)
+                            .overlay {
+                                Toggle("Microphone required", isOn: $newRequest.mic)
+                                    .padding(.horizontal)
+                            }
+                            .padding(.horizontal)
+                        
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(UIColor.secondarySystemGroupedBackground))
+                            .frame(height: 40.0)
+                            .overlay {
+                                Stepper("Players needed: \(newRequest.pnumber)", value: $newRequest.pnumber, in: 1...20, step: 1)
+                                    .padding(.horizontal)
+                            }
+                            .padding(.horizontal)
+                        
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(UIColor.secondarySystemGroupedBackground))
+                            .frame(height: 40.0)
+                            .overlay {
+                                Stepper("Expiration time: \(newRequest.time) min", value: $newRequest.time, in: 5...120, step: 5)
+                                    .padding(.horizontal)
+                            }
+                            .padding(.horizontal)
+                        
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(UIColor.secondarySystemGroupedBackground))
+                            .frame(height: 40.0)
+                            .overlay {
+                                Button(action: {showModal.toggle()}) {
+                                    HStack {
+                                        Text("Region")
+                                            .foregroundColor(.primary)
+                                        
+                                        Spacer()
+                                        
+                                        Text(regions.first(where: {$1 == newRequest.region})?.key ?? "N/A")
+                                            .foregroundColor(.accentColor)
+                                        
+                                        Image(newRequest.region)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 35)
+                                        
+                                        Image(systemName: "chevron.up.chevron.down")
+                                            .resizable()
+                                            .renderingMode(.template)
+                                            .foregroundColor(.secondary)
+                                            .scaledToFit()
+                                            .frame(width: 10)
+                                    }
+                                }
+                                .padding(.horizontal)
+                                .sheet(isPresented: $showModal) {
+                                    RegionSelect(alpha2Bind: $newRequest.region)
+                                }
+                            }
+                            .padding(.horizontal)
+                        
+                        
+                    }
                 }
             }
         }
@@ -98,7 +192,7 @@ struct GameConfig: View {
                     }
                     dismiss()
                 } label: {
-                    Text("Save and Exit")
+                    Text("Create")
                 }
             }
         }

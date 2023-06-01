@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "apple.png",
+      "filename" : "iOS platform.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "apple 1.png",
+      "filename" : "iOS platform 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "apple 2.png",
+      "filename" : "iOS platform 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

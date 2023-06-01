@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "nintendo-switch.png",
+      "filename" : "Switch platform.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "nintendo-switch 1.png",
+      "filename" : "Switch platform 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "nintendo-switch 2.png",
+      "filename" : "Switch platform 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

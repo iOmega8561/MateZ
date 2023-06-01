@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "pc.png",
+      "filename" : "PC platform.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "pc 1.png",
+      "filename" : "PC platform 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "pc 2.png",
+      "filename" : "PC platform 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
