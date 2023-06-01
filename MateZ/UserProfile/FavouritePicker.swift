@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct FavouritePicker: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.dismiss) private var dismiss
     @StateObject var appData: AppData
     @State var searchText: String = ""
     
@@ -29,16 +30,19 @@ struct FavouritePicker: View {
             .navigationTitle("Select a game")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {presentationMode.wrappedValue.dismiss()}) {
-                        Text("Exit")
+                    Button(action: {dismiss()}) {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15)
                     }
                 }
             }
         }
         .navigationViewStyle(.stack)
-        .task {
+        .onChange(of: scenePhase) { _ in
             if searchResults.count < 1 {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             }
         }
     }

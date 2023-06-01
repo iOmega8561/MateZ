@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct Dashboard: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var refreshDone: Bool = false
     @State var logoutActive: Bool = false
     @StateObject var appData: AppData

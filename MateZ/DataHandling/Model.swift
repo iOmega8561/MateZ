@@ -4,7 +4,6 @@
 //
 //  Created by Giuseppe Rocco on 25/04/23.
 //
-
 import Foundation
 
 struct LocalAuthData: Codable {
@@ -20,6 +19,7 @@ struct FavouriteGame: Codable, Hashable {
 struct UserProfile: Codable {
     var username: String = "na"
     var avatar: String = "user_generic"
+    var region: String = "na"
     var fgames: [FavouriteGame] = []
 }
 

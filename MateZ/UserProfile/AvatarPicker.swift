@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AvatarPicker: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) private var dismiss
     
     @StateObject var appData: AppData
     
@@ -48,10 +48,19 @@ struct AvatarPicker: View {
                         Task {
                             appData.localProfile.avatar = "user\(selection)"
                             await appData.updateUser()
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         }
                     }) {
                         Text("Save")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {dismiss()}) {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15)
                     }
                 }
             }
