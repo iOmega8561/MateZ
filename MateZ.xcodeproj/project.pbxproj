@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E317A2612A1FA5520007833E /* FavouritePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E317A2602A1FA5520007833E /* FavouritePicker.swift */; };
-		E317A2632A1FA6330007833E /* PlatformPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E317A2622A1FA6330007833E /* PlatformPicker.swift */; };
 		E31CD9182A1662FE00C7C8CC /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CD9172A1662FE00C7C8CC /* Signup.swift */; };
 		E31CD91A2A16638100C7C8CC /* RequestDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CD9192A16638100C7C8CC /* RequestDetails.swift */; };
 		E31CD91C2A167FDB00C7C8CC /* StartupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CD91B2A167FDB00C7C8CC /* StartupView.swift */; };
@@ -34,7 +33,6 @@
 
 /* Begin PBXFileReference section */
 		E317A2602A1FA5520007833E /* FavouritePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePicker.swift; sourceTree = "<group>"; };
-		E317A2622A1FA6330007833E /* PlatformPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformPicker.swift; sourceTree = "<group>"; };
 		E31CD9172A1662FE00C7C8CC /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
 		E31CD9192A16638100C7C8CC /* RequestDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetails.swift; sourceTree = "<group>"; };
 		E31CD91B2A167FDB00C7C8CC /* StartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupView.swift; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 			children = (
 				E382071C2A1BAE03005293DA /* AvatarPicker.swift */,
 				E317A2602A1FA5520007833E /* FavouritePicker.swift */,
-				E317A2622A1FA6330007833E /* PlatformPicker.swift */,
 				E38BAAB82A17AEC5004B6A03 /* Profile.swift */,
 			);
 			path = UserProfile;
@@ -243,7 +240,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E317A2632A1FA6330007833E /* PlatformPicker.swift in Sources */,
 				E38BAAB92A17AEC5004B6A03 /* Profile.swift in Sources */,
 				E3B151FB2A0BE98700907396 /* GameSelection.swift in Sources */,
 				E317A2612A1FA5520007833E /* FavouritePicker.swift in Sources */,

@@ -16,18 +16,24 @@ struct FavouritePicker: View {
     var body: some View {
         NavigationView {
             List(searchResults, id: \.self) { game in
-                NavigationLink(destination: PlatformPicker(appData: appData, game: FavouriteGame(
-                    name: game, plat: []
-                )).navigationTitle("Platform")) {
+                Button {
+                    Task {
+                        appData.localProfile.fgames.append(game)
+                        await appData.updateUser()
+                    }
+                    dismiss()
+                } label: {
                     HStack {
                         RemoteImage(imgname: appData.games[game]!.imgname, squareSize: 35)
                             .frame(width: 35, height: 35)
                         Text(game)
+                            .foregroundColor(.primary)
                     }
                 }
             }
             .searchable(text: $searchText)
             .navigationTitle("Select a game")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {dismiss()}) {
@@ -48,7 +54,7 @@ struct FavouritePicker: View {
     }
     
     var fgamesList: [String] {
-        return appData.localProfile.fgames.map{$0.name}
+        return appData.localProfile.fgames
     }
     
     var searchResults: [String] {

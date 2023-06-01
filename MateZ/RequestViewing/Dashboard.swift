@@ -64,6 +64,7 @@ struct Dashboard: View {
                 }
             }
         }
+        .navigationViewStyle(.stack)
         .task {
             await appData.fetchRemoteGames()
             

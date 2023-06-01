@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "xbox-icon.png",
+      "filename" : "XBOX platform.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "xbox-icon 1.png",
+      "filename" : "XBOX platform 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "xbox-icon 2.png",
+      "filename" : "XBOX platform 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
