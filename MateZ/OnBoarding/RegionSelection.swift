@@ -1,16 +1,19 @@
 //
-//  RegionSelect.swift
+//  RegionSelection.swift
 //  MateZ
 //
-//  Created by Giuseppe Rocco on 31/05/23.
+//  Created by Giuseppe Rocco on 05/06/23.
 //
 
 import SwiftUI
 
-struct RegionSelect: View {
-    @Environment(\.dismiss) private var dismiss
-    @Binding var alpha2Bind: String
+struct RegionSelection: View {
+    @StateObject var appData: AppData
+    @Binding var onBoardingDone: Bool
+    
     @State var searchText: String = ""
+    @State var navigationActive: Bool = false
+    @State var showError: Bool = false
     
     var searchResults: [String] {
         if searchText.isEmpty {
@@ -26,16 +29,20 @@ struct RegionSelect: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color("BG").ignoresSafeArea()
+        ZStack {
+            Color("BG").ignoresSafeArea()
+            
+            VStack(alignment: .leading) {
+                Text("SELECT YOUR REGION")
+                    .font(.headline)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal)
                 
                 ScrollView {
                     LazyVStack {
                         ForEach(searchResults, id: \.self) { region in
                             Button {
-                                alpha2Bind = regions[region] ?? "na"
-                                dismiss()
+                                appData.localProfile.region = regions[region] ?? "n/a"
                             } label: {
                                 HStack(spacing: 10) {
                                     RoundedRectangle(cornerRadius: 10)
@@ -55,7 +62,7 @@ struct RegionSelect: View {
                                                     .foregroundColor(.primary)
                                                 Spacer()
                                                 
-                                                if alpha2Bind == regions[region] ?? "na" {
+                                                if appData.localProfile.region == regions[region] ?? "na" {
                                                     Image(systemName: "checkmark")
                                                 }
                                             }.padding(.horizontal)
@@ -66,16 +73,28 @@ struct RegionSelect: View {
                     }.padding(.horizontal)
                 }
                 .searchable(text: $searchText)
-                .navigationTitle("Select a region")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button(action: {dismiss()}) {
-                            Image(systemName: "xmark")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15)
+            }
+            .navigationTitle("Region")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    
+                    Button {
+                        if appData.localProfile.region != "n_a" {
+                            navigationActive = true
+                        } else {
+                            showError.toggle()
                         }
+                    } label: {
+                        NavigationLink(destination: GamesSelection(appData: appData, onBoardingDone: $onBoardingDone), isActive: $navigationActive) {EmptyView() }
+                        
+                            HStack {
+                                Text("Games")
+                                Image(systemName: "chevron.right")
+                            }
+                        
+                    }
+                    .alert("Select your region", isPresented: $showError) {
+                        Button("OK", role: .cancel) { }
                     }
                 }
             }
@@ -83,8 +102,8 @@ struct RegionSelect: View {
     }
 }
 
-struct RegionSelect_Previews: PreviewProvider {
+struct RegionSelection_Previews: PreviewProvider {
     static var previews: some View {
-        RegionSelect(alpha2Bind: .constant(""))
+        RegionSelection(appData: AppData(), onBoardingDone: .constant(false))
     }
 }

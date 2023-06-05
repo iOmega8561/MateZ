@@ -1,0 +1,88 @@
+//
+//  AvatarSelection.swift
+//  MateZ
+//
+//  Created by Giuseppe Rocco on 05/06/23.
+//
+
+import SwiftUI
+
+struct AvatarSelection: View {
+    @StateObject var appData: AppData
+    @Binding var onBoardingDone: Bool
+    
+    private let gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
+    @State var selection: Int = -1
+    @State var navigationActive: Bool = false
+    @State var showError: Bool = false
+    
+    var body: some View {
+        
+        ZStack {
+            Color("BG").ignoresSafeArea()
+            
+            VStack(alignment: .leading) {
+                Text("CHOOSE YOUR AVATAR")
+                    .font(.headline)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal)
+                
+                GeometryReader { proxy in
+                    ScrollView {
+                        LazyVGrid(columns: gridItemLayout, spacing: 10) {
+                            ForEach(0..<6) { i in
+                                Button {
+                                    selection = i
+                                    appData.localProfile.avatar = "user\(i)"
+                                } label: {
+                                    ZStack(alignment: .bottomTrailing) {
+                                        RemoteImage(imgname: "user\(i)", squareSize: proxy.size.width / 3)
+                                        
+                                        if selection == i {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 30)
+                                                .padding()
+                                                .foregroundColor(.accentColor)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }.padding(.horizontal)
+            }
+        }
+        .navigationTitle("Avatar")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    if appData.localProfile.avatar != "user_generic" {
+                        navigationActive = true
+                    } else {
+                        showError.toggle()
+                    }
+                } label: {
+                    NavigationLink(destination: RegionSelection(appData: appData, onBoardingDone: $onBoardingDone), isActive: $navigationActive) {EmptyView() }
+                    
+                    HStack {
+                        Text("Region")
+                        Image(systemName: "chevron.right")
+                    }
+                    
+                }
+                .alert("Select an avatar", isPresented: $showError) {
+                    Button("OK", role: .cancel) { }
+                }
+            }
+        }
+    }
+}
+
+struct AvatarSelection_Previews: PreviewProvider {
+    static var previews: some View {
+        AvatarSelection(appData: AppData(), onBoardingDone: .constant(false))
+    }
+}

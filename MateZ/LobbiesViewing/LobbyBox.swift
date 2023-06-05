@@ -34,23 +34,41 @@ struct LobbyBox: View {
                         .shadow(radius: 4.0)
                         .padding(.trailing)
                     
+                    
                     VStack(alignment: .leading) {
-                        Text(request.game)
-                            .lineLimit(1)
-                            .font(.system(size: 23, weight: .semibold))
+                        HStack {
+                            Text(request.game)
+                                .lineLimit(1)
+                                .font(.system(size: 23, weight: .semibold))
+                            
+                            Spacer()
+                            
+                            ZStack(alignment: .center) {
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color("BDisabled"))
+                                    .frame(width: 32, height: 32)
+                                
+                                Image(request.plat)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 28.0, height: 28.0)
+                            }
+                        }
+                        
                         
                         HStack {
                             Image(systemName: "hourglass")
                             Text(expireDate, formatter: dateFormatter)
                         }
-                        
                         Spacer()
                         
                         HStack {
+                            
                             HStack {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 2)
-                                        .frame(width: 29,height: 22)
+                                        .fill(Color("BDisabled"))
+                                        .frame(width: 26,height: 20)
                                     
                                     Image(request.region)
                                         .resizable()
@@ -61,6 +79,7 @@ struct LobbyBox: View {
                                 Text(request.region.uppercased())
                                     .font(.system(size: 18))
                             }
+                            
                             Spacer()
                             HStack {
                                 Image(systemName: "mic")
@@ -79,7 +98,7 @@ struct LobbyBox: View {
                                 
                                 Text("\(request.pnumber)")
                             }
-                            Spacer()
+                            //Spacer()
                         }
                     }
                     

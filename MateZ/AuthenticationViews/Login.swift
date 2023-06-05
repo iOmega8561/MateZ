@@ -10,6 +10,7 @@ import SwiftUI
 struct Login: View {
     @StateObject var appData: AppData
     @Binding var loggedIn: Bool
+    @Binding var onBoardingDone: Bool
     
     @State var username: String = ""
     @State var password: String = ""
@@ -163,9 +164,15 @@ struct Login: View {
             if let data = await appData.getProfile(username: appData.authData.username) {
                 appData.localProfile = data
                 
+                if appData.localProfile.avatar != "user_generic" && appData.localProfile.fgames.count != 0 && appData.localProfile.region != "n_a" {
+                    onBoardingDone = true
+                }
+                
                 do {
                     try await appData.save()
                 } catch { print("Error saving authData") }
+                
+                
                 
                 loggedIn = true
             }
@@ -177,6 +184,6 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login(appData: AppData(), loggedIn: .constant(false))
+        Login(appData: AppData(), loggedIn: .constant(false), onBoardingDone: .constant(false))
     }
 }
