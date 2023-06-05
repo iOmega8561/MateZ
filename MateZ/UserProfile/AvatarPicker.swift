@@ -35,7 +35,7 @@ struct AvatarPicker: View {
                                                 .scaledToFit()
                                                 .frame(width: 30)
                                                 .padding()
-                                                .foregroundColor(.green)
+                                                .foregroundColor(.accentColor)
                                         }
                                     }
                                 }

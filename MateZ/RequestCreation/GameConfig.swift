@@ -171,7 +171,7 @@ struct GameConfig: View {
                                 }
                                 .padding(.horizontal)
                                 .sheet(isPresented: $showModal) {
-                                    RegionSelect(alpha2Bind: $newRequest.region)
+                                    GameRegion(alpha2Bind: $newRequest.region)
                                 }
                             }
                             .padding(.horizontal)

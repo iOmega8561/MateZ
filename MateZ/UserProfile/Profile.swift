@@ -16,6 +16,7 @@ struct Profile: View {
     @State var avatarPicker: Bool = false
     @State var showModal: Bool = false
     @State var error: Bool = false
+    @State var error2: Bool = false
     
     var myRequests: [UserRequest] {
         let new = appData.requests.filter {
@@ -137,14 +138,22 @@ struct Profile: View {
                                             .contextMenu {
                                                 Button(role: .destructive) {
                                                     Task {
-                                                        let idx = appData.localProfile.fgames.firstIndex(of: g)
-                                                        
-                                                        appData.localProfile.fgames.remove(at: idx!)
-                                                        await appData.updateUser()
+                                                        if appData.localProfile.fgames.count > 1 { if let idx = appData.localProfile.fgames.firstIndex(of: g) {
+                                                            
+                                                            appData.localProfile.fgames.remove(at: idx)
+                                                            await appData.updateUser()
+                                                        }
+                                                        } else {
+                                                            error2.toggle()
+                                                        }
                                                     }
                                                 } label: {
                                                     Label("Delete game", systemImage: "x.circle")
                                                 }
+                                                
+                                            }
+                                            .alert("You need at least one game!", isPresented: $error2) {
+                                                Button("OK", role: .cancel) { }
                                             }
                                         }
                                     }

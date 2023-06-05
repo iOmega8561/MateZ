@@ -11,6 +11,7 @@ struct StartupView: View {
     @StateObject var appData: AppData
     @State var isLoading: Bool = true
     @State var loggedIn: Bool = false
+    @State var onBoardingDone: Bool = false
     
     var body: some View {
         Group {
@@ -20,9 +21,14 @@ struct StartupView: View {
                     Color("BG").ignoresSafeArea()
                     CustomProgress(withText: true)
                 }
+                
             } else if !loggedIn {
-                Login(appData: appData, loggedIn: $loggedIn)
-            } else {
+                Login(appData: appData, loggedIn: $loggedIn, onBoardingDone: $onBoardingDone)
+                
+            } else if loggedIn && !onBoardingDone {
+                GetStarted(appData: appData, onBoardingDone: $onBoardingDone)
+                
+            } else if loggedIn && onBoardingDone {
                 TabView {
                     
                     Dashboard(appData: appData)
@@ -47,6 +53,11 @@ struct StartupView: View {
                     if response == "Success" {
                         if let data = await appData.getProfile(username: appData.authData.username) {
                             appData.localProfile = data
+                            
+                            if appData.localProfile.avatar != "user_generic" && appData.localProfile.fgames.count != 0 && appData.localProfile.region != "n_a" {
+                                onBoardingDone = true
+                            }
+                            
                             loggedIn = true
                         }
                     }

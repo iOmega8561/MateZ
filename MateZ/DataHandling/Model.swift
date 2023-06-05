@@ -9,12 +9,13 @@ import Foundation
 struct LocalAuthData: Codable {
     var token: String = "na"
     var username: String = "na"
+    var onBoardingDone: Bool = false
 }
 
 struct UserProfile: Codable {
     var username: String = "na"
     var avatar: String = "user_generic"
-    var region: String = "na"
+    var region: String = "n_a"
     var fgames: [String] = []
 }
 
