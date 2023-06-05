@@ -9,7 +9,6 @@ import Foundation
 struct LocalAuthData: Codable {
     var token: String = "na"
     var username: String = "na"
-    var onBoardingDone: Bool = false
 }
 
 struct UserProfile: Codable {
