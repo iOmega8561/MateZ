@@ -23,10 +23,10 @@ struct StartupView: View {
                 }
                 
             } else if !loggedIn {
-                Login(appData: appData, loggedIn: $loggedIn)
+                GetStarted(appData: appData, loggedIn: $loggedIn)
                 
             } else if loggedIn && showOnboarding {
-                GetStarted(appData: appData)
+                InitialConfig(appData: appData)
                 
             } else if loggedIn {
                 TabView {

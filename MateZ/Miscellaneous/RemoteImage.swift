@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct RemoteImage: View {
-    let baseUrl: String = "https://test.example.domain.com"
+    private let baseUrl: String = "https://test.example.domain.com"
     let imgname: String
     var squareSize: CGFloat?
     
     var body: some View {
-        if let myImage = UIImage(named: imgname) {
+        if UIImage(named: imgname) != nil {
             Image(imgname)
                 .resizable()
                 .scaledToFit()

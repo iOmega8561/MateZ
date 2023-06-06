@@ -19,10 +19,11 @@
 		E3371FBA29F8502B00A5F810 /* CustomProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3371FB929F8502B00A5F810 /* CustomProgress.swift */; };
 		E33AAF422A2792B700034A0C /* Regions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33AAF412A2792B700034A0C /* Regions.swift */; };
 		E33AAF442A279AC800034A0C /* GameRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33AAF432A279AC800034A0C /* GameRegion.swift */; };
+		E33DBC652A2F83230044C275 /* GetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33DBC642A2F83230044C275 /* GetStarted.swift */; };
 		E36393AA2A2E19AE005EAD9F /* AvatarSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36393A92A2E19AE005EAD9F /* AvatarSelection.swift */; };
 		E36393AC2A2E19BA005EAD9F /* RegionSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36393AB2A2E19BA005EAD9F /* RegionSelection.swift */; };
 		E36393AF2A2E19D6005EAD9F /* GamesSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36393AE2A2E19D6005EAD9F /* GamesSelection.swift */; };
-		E36393B12A2E2BB7005EAD9F /* GetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36393B02A2E2BB7005EAD9F /* GetStarted.swift */; };
+		E36393B12A2E2BB7005EAD9F /* InitialConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36393B02A2E2BB7005EAD9F /* InitialConfig.swift */; };
 		E382071D2A1BAE03005293DA /* AvatarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E382071C2A1BAE03005293DA /* AvatarPicker.swift */; };
 		E38BAAB92A17AEC5004B6A03 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38BAAB82A17AEC5004B6A03 /* Profile.swift */; };
 		E3B151F82A0BE37400907396 /* GameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B151F72A0BE37400907396 /* GameConfig.swift */; };
@@ -49,10 +50,11 @@
 		E3371FB929F8502B00A5F810 /* CustomProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgress.swift; sourceTree = "<group>"; };
 		E33AAF412A2792B700034A0C /* Regions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regions.swift; sourceTree = "<group>"; };
 		E33AAF432A279AC800034A0C /* GameRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRegion.swift; sourceTree = "<group>"; };
+		E33DBC642A2F83230044C275 /* GetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStarted.swift; sourceTree = "<group>"; };
 		E36393A92A2E19AE005EAD9F /* AvatarSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelection.swift; sourceTree = "<group>"; };
 		E36393AB2A2E19BA005EAD9F /* RegionSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelection.swift; sourceTree = "<group>"; };
 		E36393AE2A2E19D6005EAD9F /* GamesSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesSelection.swift; sourceTree = "<group>"; };
-		E36393B02A2E2BB7005EAD9F /* GetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStarted.swift; sourceTree = "<group>"; };
+		E36393B02A2E2BB7005EAD9F /* InitialConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialConfig.swift; sourceTree = "<group>"; };
 		E382071C2A1BAE03005293DA /* AvatarPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPicker.swift; sourceTree = "<group>"; };
 		E38BAAB82A17AEC5004B6A03 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		E3B151F72A0BE37400907396 /* GameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConfig.swift; sourceTree = "<group>"; };
@@ -132,7 +134,7 @@
 		E36393A82A2E100A005EAD9F /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
-				E36393B02A2E2BB7005EAD9F /* GetStarted.swift */,
+				E36393B02A2E2BB7005EAD9F /* InitialConfig.swift */,
 				E36393A92A2E19AE005EAD9F /* AvatarSelection.swift */,
 				E36393AB2A2E19BA005EAD9F /* RegionSelection.swift */,
 				E36393AE2A2E19D6005EAD9F /* GamesSelection.swift */,
@@ -145,6 +147,7 @@
 			children = (
 				E3DF33722A13D3850071E1B5 /* Login.swift */,
 				E31CD9172A1662FE00C7C8CC /* Signup.swift */,
+				E33DBC642A2F83230044C275 /* GetStarted.swift */,
 			);
 			path = AuthenticationViews;
 			sourceTree = "<group>";
@@ -273,11 +276,12 @@
 				E36393AC2A2E19BA005EAD9F /* RegionSelection.swift in Sources */,
 				E3371FBA29F8502B00A5F810 /* CustomProgress.swift in Sources */,
 				E3BFC15A29FD30A50025609E /* Dashboard.swift in Sources */,
+				E33DBC652A2F83230044C275 /* GetStarted.swift in Sources */,
 				E31CD9182A1662FE00C7C8CC /* Signup.swift in Sources */,
 				E31CD91C2A167FDB00C7C8CC /* StartupView.swift in Sources */,
 				E31CD91A2A16638100C7C8CC /* LobbyDetails.swift in Sources */,
 				E33AAF442A279AC800034A0C /* GameRegion.swift in Sources */,
-				E36393B12A2E2BB7005EAD9F /* GetStarted.swift in Sources */,
+				E36393B12A2E2BB7005EAD9F /* InitialConfig.swift in Sources */,
 				E3BFC15729FD2A4C0025609E /* RemoteImage.swift in Sources */,
 				E3371FA529F8438800A5F810 /* App.swift in Sources */,
 				E33AAF422A2792B700034A0C /* Regions.swift in Sources */,
