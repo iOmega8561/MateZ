@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GamesSelection: View {
     @StateObject var appData: AppData
-    @Binding var onBoardingDone: Bool
     
     @State var searchText: String = ""
     @State var showError: Bool = false
@@ -71,7 +70,7 @@ struct GamesSelection: View {
                         if !appData.localProfile.fgames.isEmpty {
                             Task {
                                 await appData.updateUser()
-                                onBoardingDone = true
+                                appData.getStartedDone = true
                             }
                         } else {
                             showError.toggle()
@@ -101,6 +100,6 @@ struct GamesSelection: View {
 
 struct GamesSelection_Previews: PreviewProvider {
     static var previews: some View {
-        GamesSelection(appData: AppData(), onBoardingDone: .constant(false))
+        GamesSelection(appData: AppData())
     }
 }

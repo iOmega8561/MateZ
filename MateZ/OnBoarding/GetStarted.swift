@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GetStarted: View {
     @StateObject var appData: AppData
-    @Binding var onBoardingDone: Bool
     
     var body: some View {
         NavigationView {
@@ -23,7 +22,7 @@ struct GetStarted: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: AvatarSelection(appData: appData, onBoardingDone: $onBoardingDone)) {
+                    NavigationLink(destination: AvatarSelection(appData: appData)) {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.accentColor)
                             .frame(width: 150, height: 50)
@@ -41,6 +40,6 @@ struct GetStarted: View {
 
 struct GetStarted_Previews: PreviewProvider {
     static var previews: some View {
-        GetStarted(appData: AppData(), onBoardingDone: .constant(false))
+        GetStarted(appData: AppData())
     }
 }

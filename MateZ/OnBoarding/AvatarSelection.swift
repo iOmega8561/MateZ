@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AvatarSelection: View {
     @StateObject var appData: AppData
-    @Binding var onBoardingDone: Bool
     
     private let gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -65,7 +64,7 @@ struct AvatarSelection: View {
                         showError.toggle()
                     }
                 } label: {
-                    NavigationLink(destination: RegionSelection(appData: appData, onBoardingDone: $onBoardingDone), isActive: $navigationActive) {EmptyView() }
+                    NavigationLink(destination: RegionSelection(appData: appData), isActive: $navigationActive) {EmptyView() }
                     
                     HStack {
                         Text("Region")
@@ -83,6 +82,6 @@ struct AvatarSelection: View {
 
 struct AvatarSelection_Previews: PreviewProvider {
     static var previews: some View {
-        AvatarSelection(appData: AppData(), onBoardingDone: .constant(false))
+        AvatarSelection(appData: AppData())
     }
 }

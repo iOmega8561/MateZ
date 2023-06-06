@@ -11,7 +11,7 @@ struct StartupView: View {
     @StateObject var appData: AppData
     @State var isLoading: Bool = true
     @State var loggedIn: Bool = false
-    @State var onBoardingDone: Bool = false
+    @State var showOnboarding: Bool = true
     
     var body: some View {
         Group {
@@ -23,12 +23,12 @@ struct StartupView: View {
                 }
                 
             } else if !loggedIn {
-                Login(appData: appData, loggedIn: $loggedIn, onBoardingDone: $onBoardingDone)
+                Login(appData: appData, loggedIn: $loggedIn)
                 
-            } else if loggedIn && !onBoardingDone {
-                GetStarted(appData: appData, onBoardingDone: $onBoardingDone)
+            } else if loggedIn && showOnboarding {
+                GetStarted(appData: appData)
                 
-            } else if loggedIn && onBoardingDone {
+            } else if loggedIn {
                 TabView {
                     
                     Dashboard(appData: appData)
@@ -43,7 +43,11 @@ struct StartupView: View {
                 }
             }
             
-        }.task {
+        }
+        .onChange(of: appData.getStartedDone) { value in
+            showOnboarding = !value
+        }
+        .task {
             do {
                 try await appData.load()
                 
@@ -55,7 +59,7 @@ struct StartupView: View {
                             appData.localProfile = data
                             
                             if appData.localProfile.avatar != "user_generic" && appData.localProfile.fgames.count != 0 && appData.localProfile.region != "n_a" {
-                                onBoardingDone = true
+                                appData.getStartedDone = true
                             }
                             
                             loggedIn = true
