@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct Signup: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var appData: AppData
     
+    @State var flyToGetStarted: Bool = false
     @State var username: String = ""
     @State var password: String = ""
     @State var password2: String = ""
@@ -133,6 +133,8 @@ struct Signup: View {
                 
                 if !isLoading {
                     Button(action: {Task { await signupManage() }}) {
+                        NavigationLink(destination: GetStarted(appData: appData).navigationBarBackButtonHidden(true), isActive: $flyToGetStarted) { EmptyView() }
+                        
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.accentColor)
                             .frame(width: 350, height: 50)
@@ -175,10 +177,16 @@ struct Signup: View {
             passError = true
         } else {
             usernameError = false; passError = false; asyncError = false; pass2Error = false; usernameTaken = false
-        }
-        
-        if response == "Success" {
-            self.presentationMode.wrappedValue.dismiss()
+            
+            appData.localProfile.username = username
+            appData.authData.username = username
+            appData.authData.token = response
+            
+            do {
+                try await appData.save()
+            } catch { print("Error saving authData") }
+            
+            flyToGetStarted = true
         }
         
         isLoading = false

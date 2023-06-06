@@ -11,6 +11,8 @@ import Foundation
 class AppData: ObservableObject {
     private let webAPI: WebAPI = WebAPI()
     
+    @Published var getStartedDone: Bool = false
+    
     @Published var authData: LocalAuthData = LocalAuthData()
     @Published var localProfile: UserProfile = UserProfile()
     @Published var games: [String: Game] = [:]

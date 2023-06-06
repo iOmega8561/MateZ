@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RegionSelection: View {
     @StateObject var appData: AppData
-    @Binding var onBoardingDone: Bool
     
     @State var searchText: String = ""
     @State var navigationActive: Bool = false
@@ -85,7 +84,7 @@ struct RegionSelection: View {
                             showError.toggle()
                         }
                     } label: {
-                        NavigationLink(destination: GamesSelection(appData: appData, onBoardingDone: $onBoardingDone), isActive: $navigationActive) {EmptyView() }
+                        NavigationLink(destination: GamesSelection(appData: appData), isActive: $navigationActive) {EmptyView() }
                         
                             HStack {
                                 Text("Games")
@@ -104,6 +103,6 @@ struct RegionSelection: View {
 
 struct RegionSelection_Previews: PreviewProvider {
     static var previews: some View {
-        RegionSelection(appData: AppData(), onBoardingDone: .constant(false))
+        RegionSelection(appData: AppData())
     }
 }
