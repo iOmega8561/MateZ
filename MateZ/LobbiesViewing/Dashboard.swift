@@ -17,6 +17,8 @@ struct Dashboard: View {
             $0.value.user_id != appData.authData.username
         }.map{$0.value}
         
+        //let byDate = new.sorted(by: {$0.date > $1.date})
+        
         return new.sorted(by: {$0.date > $1.date})
     }
     

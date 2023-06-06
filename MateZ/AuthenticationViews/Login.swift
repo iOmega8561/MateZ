@@ -19,29 +19,21 @@ struct Login: View {
     @State var asyncError: Bool = false
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color("BG")
-                    .ignoresSafeArea()
-                
-                VStack(spacing: 28) {
-                    Spacer()
+        ZStack {
+            Color("BG")
+                .ignoresSafeArea()
+            
+        
+            VStack {
+                 ScrollView {
+                     Spacer()
+                         .frame(height: 48)
                     
-                    Image("Joypad")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 300.0, minHeight: 250.0)
-                        .animation(.spring(), value: 10)
-                    
-                    Text("Welcome, please log in")
-                        .font(.title)
-                    
-                    Spacer()
                     
                     VStack(alignment: .leading, spacing: 11) {
                         Text(usernameError ? "Invalid username":"Username")
                             .font(.system(size: 15, weight: .light))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.primary)
                             .padding(.horizontal)
                         
                         RoundedRectangle(cornerRadius: 10)
@@ -62,15 +54,18 @@ struct Login: View {
                                         .padding(.horizontal)
                                 }
                                 .padding(.horizontal)
-                                    
+                                
                                 
                             }
                     }
                     
+                    Spacer()
+                        .frame(height: 48)
+                    
                     VStack(alignment: .leading, spacing: 11) {
                         Text(passError ? "Invalid password":"Password")
                             .font(.system(size: 15, weight: .light))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.primary)
                             .padding(.horizontal)
                         
                         RoundedRectangle(cornerRadius: 10)
@@ -91,8 +86,6 @@ struct Login: View {
                                         .padding(.horizontal)
                                 }
                                 .padding(.horizontal)
-                                    
-                                
                             }
                     }
                     
@@ -104,38 +97,38 @@ struct Login: View {
                     
                     Spacer()
                     
-                    if !isLoading {
-                        HStack {
-                            NavigationLink(destination: Signup(appData: appData)) {
-                                
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color("CardBG"))
-                                    .frame(width: 200, height: 50)
-                                    .overlay(
-                                        Text("Create an account"))
-                                
-                            }.foregroundColor(.primary)
-                            
-                            Button {
-                                Task { await authenticationManage() }
-                            } label: {
-                                
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.accentColor)
-                                    .frame(width: 150, height: 50)
-                                    .overlay(
-                                        Text("Log in"))
-                                
-                            }.foregroundColor(.primary)
-                        }
-                    } else {
-                        CustomProgress(withText: false)
-                    }
                     
-                    Spacer()
+                    
                 }
+                
+                if !isLoading {
+                    HStack {
+                        Button {
+                            Task { await authenticationManage() }
+                        } label: {
+                            
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.accentColor)
+                                .frame(width: 220, height: 50)
+                                .overlay {
+                                    Text("Sign in")
+                                        .foregroundColor(.primary)
+                                        .font(.system(size: 17, weight: .bold))
+                                }
+                            
+                        }.foregroundColor(.primary)
+                    }
+                } else {
+                    CustomProgress(withText: false)
+                        .frame(width: 220, height: 50)
+                }
+                
+                Spacer()
+                    .frame(height: 30)
             }
-        }.navigationViewStyle(.stack)
+        }
+        .navigationTitle("Sign in")
+        .navigationBarTitleDisplayMode(.large)
     }
     
     func authenticationManage() async {

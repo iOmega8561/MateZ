@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Signup: View {
     @StateObject var appData: AppData
+    @Binding var loggedIn: Bool
     
     @State var flyToGetStarted: Bool = false
     @State var username: String = ""
@@ -28,112 +29,117 @@ struct Signup: View {
             Color("BG")
                 .ignoresSafeArea()
             
-            VStack(spacing: 28) {
-                
-                Image("Joypad")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 300.0, minHeight: 200.0)
-                    .animation(.spring(), value: 10)
-                
-                Text("Account creation")
-                    .font(.title)
-                
-                VStack(alignment: .leading, spacing: 11) {
-                    Text(usernameError ? "Invalid username":(usernameTaken ? "Username already in use":(invalidChar ? "Special characters are not accepted":"Username")))
-                        .font(.system(size: 15, weight: .light))
-                        .foregroundColor(.secondary)
-                        .padding(.horizontal)
+            VStack {
+                ScrollView {
+                    Spacer()
+                        .frame(height: 45.0)
                     
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.red, lineWidth: usernameError || usernameTaken || invalidChar ? 5:0)
-                        .padding(.horizontal)
-                        .frame(height: 44)
-                        .overlay {
-                            ZStack {
-                                Color("CardBG")
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                
-                                TextField("", text: $username)
-                                    .frame(height: 44)
-                                    .background(Color("CardBG"))
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    .font(.system(size: 20.0))
-                                    .autocapitalization(.none)
-                                    .padding(.horizontal)
-                            }
+                    VStack(alignment: .leading, spacing: 11) {
+                        Text(usernameError ? "Invalid username":(usernameTaken ? "Username already in use":(invalidChar ? "Special characters are not accepted":"Username")))
+                            .font(.system(size: 15, weight: .light))
+                            .foregroundColor(.primary)
                             .padding(.horizontal)
+                        
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.red, lineWidth: usernameError || usernameTaken || invalidChar ? 5:0)
+                            .padding(.horizontal)
+                            .frame(height: 44)
+                            .overlay {
+                                ZStack {
+                                    Color("CardBG")
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    
+                                    TextField("", text: $username)
+                                        .frame(height: 44)
+                                        .background(Color("CardBG"))
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .font(.system(size: 20.0))
+                                        .autocapitalization(.none)
+                                        .padding(.horizontal)
+                                }
+                                .padding(.horizontal)
                                 
-                            
-                        }
-                }
-                
-                VStack(alignment: .leading, spacing: 11) {
-                    Text(passError ? "Invalid password":"Password")
-                        .font(.system(size: 15, weight: .light))
-                        .foregroundColor(.secondary)
-                        .padding(.horizontal)
+                                
+                            }
+                    }
                     
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.red, lineWidth: passError ? 5:0)
-                        .padding(.horizontal)
-                        .frame(height: 44)
-                        .overlay {
-                            ZStack {
-                                Color("CardBG")
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                
-                                SecureField("", text: $password)
-                                    .frame(height: 44)
-                                    .background(Color("CardBG"))
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    .font(.system(size: 20.0))
-                                    .autocapitalization(.none)
-                                    .padding(.horizontal)
-                            }
-                            .padding(.horizontal)
-                                
-                            
-                        }
-                }
-                
-                VStack(alignment: .leading, spacing: 11) {
-                    Text(pass2Error ? "Passwords are not the same":"Confirm password")
-                        .font(.system(size: 15, weight: .light))
-                        .foregroundColor(.secondary)
-                        .padding(.horizontal)
+                    Spacer()
+                        .frame(height: 48)
                     
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.red, lineWidth: pass2Error ? 5:0)
-                        .padding(.horizontal)
-                        .frame(height: 44)
-                        .overlay {
-                            ZStack {
-                                Color("CardBG")
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                
-                                SecureField("", text: $password2)
-                                    .frame(height: 44)
-                                    .background(Color("CardBG"))
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    .font(.system(size: 20.0))
-                                    .autocapitalization(.none)
-                                    .padding(.horizontal)
-                            }
+                    VStack(alignment: .leading, spacing: 11) {
+                        Text(passError ? "Invalid password":"Password")
+                            .font(.system(size: 15, weight: .light))
+                            .foregroundColor(.primary)
                             .padding(.horizontal)
+                        
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.red, lineWidth: passError ? 5:0)
+                            .padding(.horizontal)
+                            .frame(height: 44)
+                            .overlay {
+                                ZStack {
+                                    Color("CardBG")
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    
+                                    SecureField("", text: $password)
+                                        .frame(height: 44)
+                                        .background(Color("CardBG"))
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .font(.system(size: 20.0))
+                                        .autocapitalization(.none)
+                                        .padding(.horizontal)
+                                }
+                                .padding(.horizontal)
                                 
-                            
-                        }
-                }
-                
-                if asyncError {
-                    Text("There was an error reaching the server")
-                        .foregroundColor(.red)
+                                
+                            }
+                    }
+                    
+                    Spacer()
+                        .frame(height: 48)
+                    
+                    VStack(alignment: .leading, spacing: 11) {
+                        Text(pass2Error ? "Passwords are not the same":"Confirm password")
+                            .font(.system(size: 15, weight: .light))
+                            .foregroundColor(.primary)
+                            .padding(.horizontal)
+                        
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.red, lineWidth: pass2Error ? 5:0)
+                            .padding(.horizontal)
+                            .frame(height: 44)
+                            .overlay {
+                                ZStack {
+                                    Color("CardBG")
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    
+                                    SecureField("", text: $password2)
+                                        .frame(height: 44)
+                                        .background(Color("CardBG"))
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .font(.system(size: 20.0))
+                                        .autocapitalization(.none)
+                                        .padding(.horizontal)
+                                }
+                                .padding(.horizontal)
+                                
+                                
+                            }
+                    }
+                    
+                    if asyncError {
+                        Text("There was an error reaching the server")
+                            .foregroundColor(.red)
+                    }
+                    
+                    Spacer()
+                    
+                    
                 }
                 
                 if !isLoading {
                     Button(action: {Task { await signupManage() }}) {
-                        NavigationLink(destination: GetStarted(appData: appData).navigationBarBackButtonHidden(true), isActive: $flyToGetStarted) { EmptyView() }
+                        NavigationLink(destination: InitialConfig(appData: appData).navigationBarBackButtonHidden(true), isActive: $flyToGetStarted) { EmptyView() }
                         
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.accentColor)
@@ -144,8 +150,13 @@ struct Signup: View {
                 } else {
                     CustomProgress(withText: false)
                 }
+                
+                Spacer()
+                    .frame(height: 30)
             }
         }
+        .navigationTitle("Sign up")
+        .navigationBarTitleDisplayMode(.large)
     }
     
     func signupManage() async {
@@ -195,6 +206,6 @@ struct Signup: View {
 
 struct Signup_Previews: PreviewProvider {
     static var previews: some View {
-        Signup(appData: AppData())
+        Signup(appData: AppData(), loggedIn: .constant(false))
     }
 }
