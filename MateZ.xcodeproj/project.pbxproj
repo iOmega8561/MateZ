@@ -461,10 +461,14 @@
 				);
 				MARKETING_VERSION = 1.0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.couchpotatoes.MateZ;
 =======
 				PRODUCT_BUNDLE_IDENTIFIER = com.aryan.matez;
 >>>>>>> master
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryan.matez;
+>>>>>>> refs/remotes/origin/master
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
