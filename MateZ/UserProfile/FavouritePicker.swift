@@ -10,7 +10,7 @@ import SwiftUI
 struct FavouritePicker: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.dismiss) private var dismiss
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     @State var searchText: String = ""
     
     var body: some View {
@@ -96,6 +96,6 @@ struct FavouritePicker: View {
 
 struct FavouritePicker_Previews: PreviewProvider {
     static var previews: some View {
-        FavouritePicker(appData: AppData())
+        FavouritePicker()
     }
 }

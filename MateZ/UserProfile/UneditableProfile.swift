@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UneditableProfile: View {
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     let userProfile: UserProfile
     
     @State var error: Bool = false
@@ -73,7 +73,7 @@ struct UneditableProfile: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 LazyHStack {
                                     ForEach(theirRequests, id: \.self) { req in
-                                        NavigationLink(destination: LobbyDetails(appData: appData, request: req, userDetailEnabled: false)) {
+                                        NavigationLink(destination: LobbyDetails(request: req, userDetailEnabled: false).environmentObject(appData)) {
                                             LobbyBox(games: appData.games, request: req)
                                                 .frame(width: proxy.size.width * 0.92, height: 120)
                                         }
@@ -120,6 +120,6 @@ struct UneditableProfile: View {
 
 struct UneditableProfile_Previews: PreviewProvider {
     static var previews: some View {
-        UneditableProfile(appData: AppData(), userProfile: UserProfile())
+        UneditableProfile(userProfile: UserProfile())
     }
 }

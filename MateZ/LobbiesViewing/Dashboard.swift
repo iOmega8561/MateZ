@@ -10,7 +10,7 @@ import SwiftUI
 struct Dashboard: View {
     @State var refreshDone: Bool = false
     @State var logoutActive: Bool = false
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     
     var notMyRequests: [UserRequest] {
         let new = appData.requests.filter {
@@ -38,7 +38,7 @@ struct Dashboard: View {
                             }
                             
                             ForEach(notMyRequests, id: \.self) { req in
-                                NavigationLink(destination: LobbyDetails(appData: appData, request: req, userDetailEnabled: true)) {
+                                NavigationLink(destination: LobbyDetails(request: req, userDetailEnabled: true).environmentObject(appData)) {
                                     LobbyBox(games: appData.games, request: req)
                                         .frame(height: 120)
                                 }
@@ -55,7 +55,7 @@ struct Dashboard: View {
                     .navigationTitle("Lobbies")
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
-                            NavigationLink(destination: GameSelection(appData: appData)) {
+                            NavigationLink(destination: GameSelection().environmentObject(appData)) {
                                 HStack {
                                     Text("New")
                                     Image(systemName: "plus")
@@ -78,6 +78,6 @@ struct Dashboard: View {
 
 struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {
-        Dashboard(appData: AppData())
+        Dashboard()
     }
 }

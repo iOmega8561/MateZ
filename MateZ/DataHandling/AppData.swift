@@ -12,7 +12,6 @@ class AppData: ObservableObject {
     private let webAPI: WebAPI = WebAPI()
     
     @Published var getStartedDone: Bool = false
-    
     @Published var authData: LocalAuthData = LocalAuthData()
     @Published var localProfile: UserProfile = UserProfile()
     @Published var games: [String: Game] = [:]
@@ -54,6 +53,15 @@ class AppData: ObservableObject {
     func updateUser() async {
         do {
             let _ = try await webAPI.updateUser(token: authData.token, profile: localProfile)
+            
+            if localProfile.avatar != "user_generic" && localProfile.fgames.count != 0 && localProfile.region != "n_a" {
+                
+                self.objectWillChange.send()
+                getStartedDone = true
+            } else {
+                self.objectWillChange.send()
+                getStartedDone = false
+            }
         } catch {
             print("Error updating profile \(String(describing: error))")
         }
@@ -68,24 +76,17 @@ class AppData: ObservableObject {
         }
     }
     
-    func updateAuthData(username: String, token: String) async {
-        self.objectWillChange.send()
-        
-        authData.token = token
-        authData.username = username
-        
-        do {
-            try await save()
-        } catch { print("Error saving authData") }
-    }
-    
     func refreshProfile() async {
         do {
             self.objectWillChange.send()
             localProfile = try await webAPI.getProfile(username: authData.username)
             
             if localProfile.avatar != "user_generic" && localProfile.fgames.count != 0 && localProfile.region != "n_a" {
+                self.objectWillChange.send()
                 getStartedDone = true
+            } else {
+                self.objectWillChange.send()
+                getStartedDone = false
             }
         } catch {
             print("Error retrieving self profile \(String(describing: error))")
@@ -95,8 +96,15 @@ class AppData: ObservableObject {
     func logout() async {
         do {
             let _ = try await webAPI.logout(username: authData.username)
+            
             self.objectWillChange.send()
-            authData.token = "na"; authData.username = "na"
+            authData = LocalAuthData()
+            
+            self.objectWillChange.send()
+            localProfile = UserProfile()
+            
+            self.objectWillChange.send()
+            getStartedDone = false
         } catch {
             print("Error loggin user out \(String(describing: error))")
         }
@@ -118,7 +126,10 @@ class AppData: ObservableObject {
             if !response.contains("Invalid") {
                 
                 self.objectWillChange.send()
-                authData.token = response; authData.username = username
+                authData.token = response
+                
+                self.objectWillChange.send()
+                authData.username = username
             }
             
             return response
@@ -130,7 +141,20 @@ class AppData: ObservableObject {
     
     func signup(username: String, password: String) async -> String {
         do {
-            return try await webAPI.signup(username: username, password: password)
+            let response = try await webAPI.signup(username: username, password: password)
+            
+            if !response.contains("Invalid") && !response.contains("User") {
+                self.objectWillChange.send()
+                authData.token = response
+                
+                self.objectWillChange.send()
+                authData.username = username
+                
+                self.objectWillChange.send()
+                localProfile.username = username
+            }
+            
+            return response
         } catch {
             print("Error authenticating user \(String(describing: error))")
             return "Error"

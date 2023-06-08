@@ -13,7 +13,8 @@ struct MacroClient: App {
     
     var body: some Scene {
         WindowGroup {
-            StartupView(appData: appData)
+            StartupView()
+                .environmentObject(appData)
         }
     }
 }

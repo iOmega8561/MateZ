@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GamesSelection: View {
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     
     @State var searchText: String = ""
     @State var showError: Bool = false
@@ -63,7 +63,6 @@ struct GamesSelection: View {
                         if !appData.localProfile.fgames.isEmpty {
                             Task {
                                 await appData.updateUser()
-                                appData.getStartedDone = true
                             }
                         } else {
                             showError.toggle()
@@ -93,6 +92,6 @@ struct GamesSelection: View {
 
 struct GamesSelection_Previews: PreviewProvider {
     static var previews: some View {
-        GamesSelection(appData: AppData())
+        GamesSelection()
     }
 }

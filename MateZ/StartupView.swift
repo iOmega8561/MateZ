@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct StartupView: View {
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
+    
     @State var isLoading: Bool = true
     @State var loggedIn: Bool = false
     
@@ -22,30 +23,39 @@ struct StartupView: View {
                 }
                 
             } else if !loggedIn {
-                GetStarted(appData: appData, loggedIn: $loggedIn)
+                GetStarted(loggedIn: $loggedIn)
+                    .environmentObject(appData)
                 
             } else if loggedIn && !appData.getStartedDone {
-                InitialConfig(appData: appData)
+                NavigationView {
+                    InitialConfig()
+                        .environmentObject(appData)
+                }
+                .navigationViewStyle(.stack)
                 
             } else if loggedIn && appData.getStartedDone {
                 TabView {
                     
-                    Dashboard(appData: appData)
+                    Dashboard()
+                        .environmentObject(appData)
                         .tabItem {
                             Label("Lobbies", systemImage: "person.3")
                         }
                     
                     DummyView()
+                        .environmentObject(appData)
                         .tabItem {
                             Label("Requests", systemImage: "personalhotspot")
                         }
                     
                     ChatScreen()
+                        .environmentObject(appData)
                         .tabItem{
                             Label("Messages", systemImage: "bubble.left")
                         }
                     
-                    Profile(appData: appData, loggedIn: $loggedIn)
+                    Profile(loggedIn: $loggedIn)
+                        .environmentObject(appData)
                         .onAppear {
                             Task {
                                 await appData.refreshProfile()
@@ -82,6 +92,6 @@ struct StartupView: View {
 
 struct StartupView_Previews: PreviewProvider {
     static var previews: some View {
-        StartupView(appData: AppData())
+        StartupView()
     }
 }

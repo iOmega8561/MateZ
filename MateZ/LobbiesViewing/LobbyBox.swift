@@ -115,6 +115,6 @@ struct LobbyBox_Previews: PreviewProvider {
     static var previews: some View {
         //LobbyBox2(games: [:], request: UserRequest(uuid: "na", user_id: "Creator username", game: "Game title", time: 5, mic: true, region: "IT", pnumber: 2, skills: [], plat: "PC", mode: "Game mode", date: Date.now))
         
-        Dashboard(appData: AppData())
+        Dashboard()
     }
 }

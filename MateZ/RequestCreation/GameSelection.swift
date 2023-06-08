@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameSelection: View {
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     @State var searchText: String = ""
     
     var body: some View {
@@ -17,7 +17,7 @@ struct GameSelection: View {
             ScrollView {
                 LazyVStack {
                     ForEach(searchResults, id: \.self) { game in
-                        NavigationLink(destination: GameConfig(appData: appData, newRequest: UserRequest(
+                        NavigationLink(destination: GameConfig(newRequest: UserRequest(
                             uuid: "localrequest",
                             user_id: appData.authData.username,
                             game: game,
@@ -29,7 +29,7 @@ struct GameSelection: View {
                             plat: appData.games[game]!.plat[0],
                             mode: appData.games[game]!.modes[0],
                             date: Date.now
-                        ))) {
+                        )).environmentObject(appData)) {
                             HStack {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color("CardBG"))
@@ -68,6 +68,6 @@ struct GameSelection: View {
 
 struct GameSelection_Previews: PreviewProvider {
     static var previews: some View {
-        GameSelection(appData: AppData())
+        GameSelection()
     }
 }
