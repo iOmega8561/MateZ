@@ -10,7 +10,7 @@ import SwiftUI
 struct AvatarPicker: View {
     @Environment(\.dismiss) private var dismiss
     
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     
     private let gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -85,6 +85,6 @@ struct AvatarPicker: View {
 
 struct AvatarPicker_Previews: PreviewProvider {
     static var previews: some View {
-        AvatarPicker(appData: AppData())
+        AvatarPicker()
     }
 }

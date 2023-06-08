@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GetStarted: View {
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     @Binding var loggedIn: Bool
     
     var body: some View {
@@ -40,7 +40,7 @@ struct GetStarted: View {
                     Text("Power up your play with perfect partners!")
                         .padding(.bottom, 30)
                     
-                    NavigationLink(destination: Signup(appData: appData, loggedIn: $loggedIn)) {
+                    NavigationLink(destination: Signup(loggedIn: $loggedIn).environmentObject(appData)) {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.accentColor)
                             .frame(width: 220, height: 50)
@@ -55,7 +55,7 @@ struct GetStarted: View {
                         Text("Already have an account?")
                             .font(.caption)
                         
-                        NavigationLink(destination: Login(appData: AppData(), loggedIn: $loggedIn)) {
+                        NavigationLink(destination: Login(loggedIn: $loggedIn).environmentObject(appData)) {
                             Text("Log In")
                                 .font(.system(size: 12, weight: .semibold))
                         }
@@ -73,6 +73,6 @@ struct GetStarted: View {
 
 struct GetStarted_Previews: PreviewProvider {
     static var previews: some View {
-        GetStarted(appData: AppData(), loggedIn: .constant(false))
+        GetStarted(loggedIn: .constant(false))
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Profile: View {
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     @Binding var loggedIn: Bool
     
     @State var deleteDialog: Bool = false
@@ -49,7 +49,7 @@ struct Profile: View {
                                             .font(.system(size: 12, weight: .semibold))
                                         
                                     }.sheet(isPresented: $avatarPicker) {
-                                        AvatarPicker(appData: appData)
+                                        AvatarPicker().environmentObject(appData)
                                     }
                                 }
                                 
@@ -88,7 +88,7 @@ struct Profile: View {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     LazyHStack {
                                         ForEach(myRequests, id: \.self) { req in
-                                            NavigationLink(destination: LobbyDetails(appData: appData, request: req, userDetailEnabled: false)) {
+                                            NavigationLink(destination: LobbyDetails(request: req, userDetailEnabled: false).environmentObject(appData)) {
                                                 LobbyBox(games: appData.games, request: req)
                                                     .frame(width: proxy.size.width * 0.92, height: 120)
                                             }
@@ -138,7 +138,8 @@ struct Profile: View {
                                     }
                                     .foregroundColor(.secondary)
                                     .sheet(isPresented: $showModal) {
-                                        FavouritePicker(appData: appData)
+                                        FavouritePicker()
+                                            .environmentObject(appData)
                                     }
                                     .alert("No other games to pin", isPresented: $error) {
                                         Button("OK", role: .cancel) { }
@@ -214,6 +215,6 @@ struct Profile: View {
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        Profile(appData: AppData(), loggedIn: .constant(true))
+        Profile(loggedIn: .constant(true))
     }
 }

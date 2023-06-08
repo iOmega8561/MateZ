@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LobbyDetails: View {
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     let request: UserRequest
     let userDetailEnabled: Bool
     
@@ -18,8 +18,7 @@ struct LobbyDetails: View {
     var expireDate: Date
     
     
-    init(appData: AppData, request: UserRequest, userDetailEnabled: Bool) {
-        _appData = StateObject(wrappedValue: appData)
+    init(request: UserRequest, userDetailEnabled: Bool) {
         self.request = request
         self.userDetailEnabled = userDetailEnabled
         
@@ -48,7 +47,7 @@ struct LobbyDetails: View {
                     
                     
                     if !isLoading {
-                        NavigationLink(destination: UneditableProfile(appData: appData, userProfile: creatorData)) {
+                        NavigationLink(destination: UneditableProfile(userProfile: creatorData).environmentObject(appData)) {
                             VStack(alignment: .center) {
                                 RemoteImage(imgname: creatorData.avatar, squareSize: 110)
                                     .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -215,6 +214,6 @@ struct LobbyDetails_Previews: PreviewProvider {
     static var previews: some View {
         //LobbyDetails(appData: AppData(), request: UserRequest(uuid: "na", user_id: "Creator username", game: "Game title", time: 5, mic: true, region: "REG", pnumber: 2, skills: [], plat: "PC", mode: "Game mode", date: Date.now))
         
-        Dashboard(appData: AppData())
+        Dashboard()
     }
 }

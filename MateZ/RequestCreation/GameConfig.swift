@@ -10,7 +10,7 @@ import SwiftUI
 struct GameConfig: View {
     @Environment(\.dismiss) private var dismiss
 
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     @State var newRequest: UserRequest
     @State var showModal: Bool = false
     
@@ -200,6 +200,6 @@ struct GameConfig: View {
 
 struct GameConfig_Previews: PreviewProvider {
     static var previews: some View {
-        GameSelection(appData: AppData())
+        GameSelection()
     }
 }

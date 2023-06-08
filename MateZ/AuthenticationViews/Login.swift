@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Login: View {
-    @StateObject var appData: AppData
+    @EnvironmentObject var appData: AppData
     @Binding var loggedIn: Bool
     
     @State var username: String = ""
@@ -168,6 +168,6 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login(appData: AppData(), loggedIn: .constant(false))
+        Login(loggedIn: .constant(false))
     }
 }
