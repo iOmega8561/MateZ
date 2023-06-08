@@ -24,7 +24,7 @@ struct ChatScreen: View {
     
     // MARK: - Events
     private func onAppear() {
-        model.connect(username: username, userID: UUID(uuidString: username)!)
+        model.connect(username: username)
     }
     
     private func onDisappear() {
@@ -54,7 +54,7 @@ struct ChatScreen: View {
                 ScrollViewReader{ proxy in
                     LazyVStack(spacing: 8) {
                         ForEach(model.messages) { message in
-                            ChatMessageRow(message: message, isUser: message.userID == UUID(uuidString: username)!)
+                            ChatMessageRow(message: message, isUser: message.user == username)
                                 .id(message.id)
                         }
                     }
@@ -146,13 +146,12 @@ private final class ChatScreenModel: ObservableObject {
     @Published var messages: [ReceivingChatMessage] = []
 
     // MARK: - Connection
-    func connect(username: String, userID: UUID) {
+    func connect(username: String) {
         guard webSocketTask == nil else {
             return
         }
 
         self.username = username
-        self.userID = userID
 
         let url = URL(string: "ws://example.domain.com:9132/chat")!
         webSocketTask = URLSession.shared.webSocketTask(with: url)
@@ -193,13 +192,12 @@ private final class ChatScreenModel: ObservableObject {
     }
     
     func send(text: String) {
-        guard let username = username,
-              let userID = userID
+        guard let username = username
         else {
             return
         }
         
-        let message = SubmittedChatMessage(message: text, user: username, userID: userID)
+        let message = SubmittedChatMessage(message: text, user: username)
         guard let json = try? JSONEncoder().encode(message),
               let jsonString = String(data: json, encoding: .utf8)
         else {
