@@ -50,7 +50,7 @@ struct LobbyDetails: View {
                         NavigationLink(destination: UneditableProfile(userProfile: creatorData).environmentObject(appData)) {
                             VStack(alignment: .center) {
                                 RemoteImage(imgname: creatorData.avatar, squareSize: 110)
-                                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
                                 
                                 Text(creatorData.username)
                                     .font(.system(size: 22, weight: .semibold))

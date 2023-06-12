@@ -39,9 +39,9 @@ struct Profile: View {
                             HStack(alignment: .center) {
                                 
                                 VStack(alignment: .center) {
-                                    RemoteImage(imgname: appData.localProfile.avatar, squareSize: 100)
-                                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                                        .frame(width: 100, height: 100)
+                                    RemoteImage(imgname: appData.localProfile.avatar, squareSize: 110)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .frame(width: 110, height: 110)
                                     
                                     Button(action: {avatarPicker = true}) {
                                         
@@ -80,7 +80,7 @@ struct Profile: View {
                             }.padding([.horizontal, .top])
                             
                             VStack(alignment: .leading) {
-                                Text("Your requests")
+                                Text("Your lobbies")
                                     .font(.title2)
                                     .foregroundColor(.primary)
                                     .padding(.horizontal)
@@ -97,7 +97,7 @@ struct Profile: View {
                                                 Button(role: .destructive) {
                                                     deleteDialog.toggle()
                                                 } label: {
-                                                    Label("Delete request", systemImage: "x.circle")
+                                                    Label("Delete lobby", systemImage: "x.circle")
                                                 }
                                                 
                                             }
@@ -118,10 +118,10 @@ struct Profile: View {
                             
                             VStack(alignment: .leading) {
                                 HStack {
-                                    Text("Favourite games")
+                                    Text("Your games")
                                         .font(.title2)
                                         .foregroundColor(.primary)
-                                    .padding(.horizontal)
+                                        .padding(.horizontal)
                                     
                                     Spacer()
                                     
@@ -133,10 +133,10 @@ struct Profile: View {
                                         }
                                     } label: {
                                         Image(systemName: "plus")
-                                            .renderingMode(.template)
-                                            .foregroundColor(.primary)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 20, height: 20)
                                     }
-                                    .foregroundColor(.secondary)
                                     .sheet(isPresented: $showModal) {
                                         FavouritePicker()
                                             .environmentObject(appData)
