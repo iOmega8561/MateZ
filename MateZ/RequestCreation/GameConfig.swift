@@ -187,7 +187,7 @@ struct GameConfig: View {
                 Button {
                     Task {
                         await appData.insertUserRequest(newRequest: newRequest)
-                        _ = await appData.fetchUserRequests()
+                        await appData.fetchUserRequests()
                     }
                     dismiss()
                 } label: {

@@ -181,19 +181,15 @@ class AppData: ObservableObject {
         }
     }
     
-    func fetchUserRequests() async -> Bool {
+    func fetchUserRequests() async {
         do {
             let tmp: [String: UserRequest] = try await webAPI.requests()
             
             self.objectWillChange.send()
             requests = tmp
-            
-            return true
         } catch {
             print("Error fetching user requests \(String(describing: error))")
         }
-        
-        return false
     }
     
     func fetchRemoteGames() async {

@@ -46,18 +46,23 @@ struct LobbyBox: View {
                             ZStack(alignment: .center) {
                                 RoundedRectangle(cornerRadius: 4)
                                     .fill(Color("BDisabled"))
-                                    .frame(width: 32, height: 32)
+                                    .frame(width: 28, height: 28)
                                 
                                 Image(request.plat)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 28.0, height: 28.0)
+                                    .frame(width: 24.0, height: 24.0)
                             }
                         }
+                        .frame(height: 28)
                         
                         
-                        HStack {
-                            Image(systemName: "hourglass")
+                        HStack(alignment: .bottom) {
+                            Image("Bomb")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20, height: 20)
+                            
                             Text(expireDate, formatter: dateFormatter)
                         }
                         Spacer()
@@ -84,8 +89,8 @@ struct LobbyBox: View {
                             HStack {
                                 Image(systemName: "mic")
                                     .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
+                                    .scaledToFill()
+                                    .frame(width: 12, height: 12)
                                 
                                 Text(request.mic ? "On":"Off")
                                     .font(.system(size: 17))
@@ -94,8 +99,8 @@ struct LobbyBox: View {
                             HStack {
                                 Image(systemName: "person.2")
                                     .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 28)
+                                    .scaledToFill()
+                                    .frame(width: 14, height: 14)
                                 
                                 Text("\(request.pnumber)")
                                     .font(.system(size: 17))
