@@ -74,7 +74,7 @@ struct GameConfig: View {
                     }
                     
                     if appData.games[newRequest.game]!.skills.count > 0 {
-                        VStack(alignment: .leading, spacing: 5) {
+                        /*VStack(alignment: .leading, spacing: 5) {
                             Text("Game roles")
                                 .font(.title2)
                                 .foregroundColor(.primary)
@@ -105,6 +105,38 @@ struct GameConfig: View {
                                 }
                                 .padding(.horizontal)
                             }
+                        }*/
+                        
+                        VStack(alignment: .leading, spacing: 5) {
+                            HStack {
+                                Text("Game roles")
+                                    .font(.title2)
+                                    .foregroundColor(.primary)
+                                
+                                Spacer()
+                                
+                                Menu {
+                                    ForEach(appData.games[newRequest.game]!.skills, id: \.self) { skill in
+                                        
+                                        if !(newRequest.skills.firstIndex(of: skill) != nil) {
+                                            Button {
+                                                newRequest.skills.append(skill)
+                                            } label: {
+                                                Text(skill)
+                                            }
+                                        }
+                                    }
+                                } label: {
+                                    Image(systemName: "plus")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 20, height: 20)
+                                }
+                            }
+                            .padding(.horizontal)
+                            
+                            TagCloud(tags: $newRequest.skills)
+                                .padding(.horizontal)
                         }
                     }
                     
