@@ -87,7 +87,7 @@ struct UneditableProfile: View {
                         
                         VStack(alignment: .leading) {
                             HStack {
-                                Text("Favoirite games")
+                                Text("Their games")
                                     .font(.title2)
                                     .foregroundColor(.primary)
                                     .padding(.horizontal)
