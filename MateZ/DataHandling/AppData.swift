@@ -50,6 +50,21 @@ class AppData: ObservableObject {
         _ = try await task.value
     }
     
+    func checkPassword(password: String) async -> Bool {
+        do {
+            let response = try await webAPI.pwdvalid(username: authData.username, password: password)
+            
+            if !response.contains("Invalid") {
+                return true
+            }
+            
+            return false
+        } catch {
+            print("Error authenticating user \(String(describing: error))")
+            return false
+        }
+    }
+    
     func updateUser() async {
         do {
             let _ = try await webAPI.updateUser(token: authData.token, profile: localProfile)

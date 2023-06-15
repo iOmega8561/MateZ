@@ -75,6 +75,18 @@ class WebAPI {
         return response.answer
     }
     
+    func pwdvalid(username: String, password: String) async throws -> String {
+        let api = APIRequest<SimpleResponse>(
+            urlString: "\(apiURLBase)/pwdvalid",
+            queryItems: [
+                URLQueryItem(name: "username", value: username),
+                URLQueryItem(name: "password", value: password)
+            ])
+        
+        let response = try await request(api)
+        return response.answer
+    }
+    
     func signup(username: String, password: String) async throws -> String {
         let api = APIRequest<SimpleResponse>(
             urlString: "\(apiURLBase)/signup",
