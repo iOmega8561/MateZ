@@ -81,7 +81,7 @@ struct ChatScreen: View {
                     }
                     .padding()
                 }
-                .navigationTitle("Global chat")
+                .navigationTitle("Global Chat")
                 .onAppear(perform: onAppear)
                 .onDisappear(perform: onDisappear)
             }
@@ -138,6 +138,9 @@ private struct ChatMessageRow: View {
  * All business logic is performed in this Observable Object.
  */
 private final class ChatScreenModel: ObservableObject {
+    
+    var filter = ProfanityFilter()
+    
     private var username: String?
     private var userID: UUID?
     
@@ -196,6 +199,8 @@ private final class ChatScreenModel: ObservableObject {
         else {
             return
         }
+        
+        let text = filter.maskProfanity(text: text)
         
         let message = SubmittedChatMessage(message: text, user: username)
         guard let json = try? JSONEncoder().encode(message),
