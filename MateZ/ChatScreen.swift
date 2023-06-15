@@ -1,13 +1,6 @@
 //
-//  ChatWithModels.swift
-//  MateZ
-//
-//  Created by Aryan Garg on 07/06/23.
-//
-
-//
 //  ChatScreen.swift
-//  ChatA
+//  MateZ
 //
 //  Created by Aryan Garg on 01/06/23.
 //
@@ -88,7 +81,7 @@ struct ChatScreen: View {
                     }
                     .padding()
                 }
-                .navigationTitle("Chat")
+                .navigationTitle("Global chat")
                 .onAppear(perform: onAppear)
                 .onDisappear(perform: onDisappear)
             }
