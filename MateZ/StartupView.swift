@@ -13,7 +13,10 @@ struct StartupView: View {
     
     @State var isLoading: Bool = true
     @State var loggedIn: Bool = false
-    @State var biometricSuccess: Bool = false
+    @State var biometricFailed: Bool = false
+    
+    @State var password: String = ""
+    @State var passError: Bool = false
     
     var body: some View {
         Group {
@@ -70,6 +73,21 @@ struct StartupView: View {
                 }
             }
         }
+        .alert("Recover session", isPresented: $biometricFailed) {
+            SecureField("Password", text: $password)
+            Button("OK", action: {Task { await authenticate()}})
+            Button("Cancel", role: .cancel) {
+                Task {
+                    await appData.logout()
+                    isLoading = false
+                }
+            }
+        } message: {
+            Text("Please enter your password.")
+        }
+        .alert("Invalid password", isPresented: $passError) {
+            Button("Retry") { biometricFailed = true }
+        }
         .task {
             do {
                 try await appData.load()
@@ -79,6 +97,8 @@ struct StartupView: View {
                     
                     if response == "Success" {
                         biometricLogin()
+                    } else {
+                        isLoading = false
                     }
                     
                 } else {
@@ -92,7 +112,24 @@ struct StartupView: View {
 }
 
 extension StartupView {
-    private func biometricLogin() -> Void {
+    private func authenticate() async {
+        if password == "" || password.contains(" ") {
+            passError = true
+            return
+        }
+        
+        let isValid = await appData.checkPassword(password: password)
+        
+        if isValid {
+            await appData.refreshProfile()
+            loggedIn = true
+            isLoading = false
+        } else {
+            passError = true
+        }
+    }
+    
+    private func biometricLogin() {
         
         let context = LAContext()
         var error: NSError?
@@ -118,11 +155,7 @@ extension StartupView {
                 }
             }
         } else {
-            Task {
-                await appData.refreshProfile()
-                loggedIn = true
-                isLoading = false
-            }
+            biometricFailed = true
         }
     }
 }
