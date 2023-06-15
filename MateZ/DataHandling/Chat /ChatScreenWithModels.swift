@@ -17,14 +17,14 @@ import Foundation
 import SwiftUI
 
 struct ChatScreen: View {
-    @State var username: String = ""
-
     @StateObject private var model = ChatScreenModel()
     @State private var message = ""
     
+    @EnvironmentObject var appData: AppData
+    
     // MARK: - Events
     private func onAppear() {
-        model.connect(username: username)
+        model.connect(username: appData.authData.username)
     }
     
     private func onDisappear() {
@@ -59,7 +59,7 @@ struct ChatScreen: View {
                         ScrollViewReader{ proxy in
                             LazyVStack(spacing: 8) {
                                 ForEach(model.messages) { message in
-                                    ChatMessageRow(message: message, isUser: message.user == username)
+                                    ChatMessageRow(message: message, isUser: message.user == appData.authData.username)
                                         .id(message.id)
                                 }
                             }
