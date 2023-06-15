@@ -6,6 +6,18 @@
 //
 import Foundation
 
+struct SubmittedChatMessage: Encodable {
+    let message: String
+    let user: String
+}
+
+struct ReceivingChatMessage: Decodable, Identifiable {
+    let date: Date
+    let id: UUID
+    let message: String
+    let user: String
+}
+
 struct LocalAuthData: Codable {
     var token: String = "na"
     var username: String = "na"

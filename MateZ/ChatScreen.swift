@@ -214,6 +214,13 @@ private final class ChatScreenModel: ObservableObject {
         webSocketTask?.send(.string(jsonString)) { error in
             if let error = error {
                 print("Error sending message", error)
+                
+                if self.username != nil && self.username != "" {
+                    self.webSocketTask = nil
+                    self.connect(username: self.username!)
+                    
+                    self.send(text: text)
+                }
             }
         }
     }
