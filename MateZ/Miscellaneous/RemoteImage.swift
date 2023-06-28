@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RemoteImage: View {
-    private let baseUrl: String = "https://test.example.domain.com"
+    private let baseUrl: String = "https://example.domain.com"
     let imgname: String
     var squareSize: CGFloat?
     
