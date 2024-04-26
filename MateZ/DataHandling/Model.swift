@@ -4,6 +4,7 @@
 //
 //  Created by Giuseppe Rocco on 25/04/23.
 //
+
 import Foundation
 
 struct SubmittedChatMessage: Encodable {
