@@ -1,5 +1,5 @@
 //
-//  LobbyBox2.swift
+//  LobbyBox.swift
 //  MateZ
 //
 //  Created by Giuseppe Rocco on 03/06/23.

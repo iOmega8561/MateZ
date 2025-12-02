@@ -1,5 +1,5 @@
 //
-//  BlackList.swift
+//  ChatBlacklist.swift
 //  MateZ
 //
 //  Created by Aryan Garg on 15/06/23.

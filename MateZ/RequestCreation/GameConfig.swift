@@ -1,5 +1,5 @@
 //
-//  NewRequest.swift
+//  GameConfig.swift
 //  MateZ
 //
 //  Created by Giuseppe Rocco on 10/05/23.
