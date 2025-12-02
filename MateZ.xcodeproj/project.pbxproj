@@ -16,7 +16,6 @@
 		E31CD91C2A167FDB00C7C8CC /* StartupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CD91B2A167FDB00C7C8CC /* StartupView.swift */; };
 		E3371FA529F8438800A5F810 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3371FA429F8438800A5F810 /* App.swift */; };
 		E3371FA929F8438900A5F810 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3371FA829F8438900A5F810 /* Assets.xcassets */; };
-		E3371FAC29F8438900A5F810 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3371FAB29F8438900A5F810 /* Preview Assets.xcassets */; };
 		E3371FB429F844B400A5F810 /* WebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3371FB329F844B400A5F810 /* WebAPI.swift */; };
 		E3371FB629F846FB00A5F810 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3371FB529F846FB00A5F810 /* Model.swift */; };
 		E3371FBA29F8502B00A5F810 /* CustomProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3371FB929F8502B00A5F810 /* CustomProgress.swift */; };
@@ -53,7 +52,6 @@
 		E3371FA129F8438800A5F810 /* MateZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MateZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3371FA429F8438800A5F810 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E3371FA829F8438900A5F810 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E3371FAB29F8438900A5F810 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E3371FB329F844B400A5F810 /* WebAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAPI.swift; sourceTree = "<group>"; };
 		E3371FB529F846FB00A5F810 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E3371FB929F8502B00A5F810 /* CustomProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgress.swift; sourceTree = "<group>"; };
@@ -129,17 +127,8 @@
 				E3B151F92A0BE93A00907396 /* RequestCreation */,
 				E3371FB229F8447A00A5F810 /* DataHandling */,
 				E3371FA829F8438900A5F810 /* Assets.xcassets */,
-				E3371FAA29F8438900A5F810 /* Preview Content */,
 			);
 			path = MateZ;
-			sourceTree = "<group>";
-		};
-		E3371FAA29F8438900A5F810 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				E3371FAB29F8438900A5F810 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		E3371FB229F8447A00A5F810 /* DataHandling */ = {
@@ -275,7 +264,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3371FAC29F8438900A5F810 /* Preview Assets.xcassets in Resources */,
 				E3371FA929F8438900A5F810 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
