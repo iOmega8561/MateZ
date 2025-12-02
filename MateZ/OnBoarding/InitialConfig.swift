@@ -1,5 +1,5 @@
 //
-//  GetStarted.swift
+//  InitialConfig.swift
 //  MateZ
 //
 //  Created by Giuseppe Rocco on 05/06/23.

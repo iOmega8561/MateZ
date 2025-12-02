@@ -1,5 +1,5 @@
 //
-//  RequestDetails.swift
+//  LobbyDetails.swift
 //  MateZ
 //
 //  Created by Giuseppe Rocco on 18/05/23.
