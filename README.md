@@ -32,4 +32,4 @@ A preview of some UI screens from the app:
 * [Giada Pisani](https://github.com/giadapisani) — UI/UX design, custom assets
 * Laura Bognanni — UI/UX design, custom assets
 * [Aryan Garg](https://github.com/Aryan-garg-1) — Chat screen implementation
-* [Giuseppe Rocco](https://github.com/iOmega8561) — iOS client development (you)
+* [Giuseppe Rocco](https://github.com/iOmega8561) — iOS client development
