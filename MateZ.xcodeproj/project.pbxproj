@@ -42,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		DDF7DA2B2A30AB6D00AE5393 /* ChatScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreen.swift; sourceTree = "<group>"; };
-		DDF7DA2D2A30ABAF00AE5393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DDF9838C2A3B444800A39C8C /* ChatBlacklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBlacklist.swift; sourceTree = "<group>"; };
 		DDF9838E2A3B445F00A39C8C /* ProfanityFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfanityFilter.swift; sourceTree = "<group>"; };
 		E317A2602A1FA5520007833E /* FavouritePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePicker.swift; sourceTree = "<group>"; };
@@ -114,7 +113,6 @@
 		E3371FA329F8438800A5F810 /* MateZ */ = {
 			isa = PBXGroup;
 			children = (
-				DDF7DA2D2A30ABAF00AE5393 /* Info.plist */,
 				E3371FA429F8438800A5F810 /* App.swift */,
 				E31CD91B2A167FDB00C7C8CC /* StartupView.swift */,
 				E37914222A30B8CF001343D4 /* DummyView.swift */,
